@@ -8,4 +8,5 @@ import lombok.Getter;
 
 public class Opleiding {
     private String onderwijsinstelling, opleidingsnaam, niveau;
+    private ArrayList<Lesvak> lesvakken;
 }
