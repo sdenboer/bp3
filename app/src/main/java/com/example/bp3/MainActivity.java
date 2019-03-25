@@ -1,5 +1,6 @@
 package com.example.bp3;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.navigation_work) {
 
         } else if (id == R.id.navigation_events) {
+            startActivity(new Intent(MainActivity.this, activity_event.class));
+
 
         } else if (id == R.id.navigation_assignments) {
 

@@ -20,25 +20,19 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class Connectionclass {
-    ArrayList<String> data = new ArrayList<>();
+    ArrayList<String> deVelden = new ArrayList<>();
 
-    public ArrayList<String> getConnection(Context context,String model, final String models, final int index) {
+    public void getConnection(Context context,String model, final String models, final int index) {
 
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://145.49.85.104:8080/bp3webservice/webresources/models." + model;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                response -> data = buildItems(response, models, index), new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println(error.getMessage());
-            }
-        });
+                response -> buildItems(response, models , index), error -> System.out.println(error.getMessage()));
         queue.add(stringRequest);
-        return data;
     }
 
-    public ArrayList<String> buildItems(String response, String models, int index){
-        ArrayList<String> deVelden = new ArrayList<>();
+    public void buildItems(String response, String models, int index){
+        //ArrayList<String> deVelden = new ArrayList<>();
         try {
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(response)));
             NodeList velden = doc.getElementsByTagName(models);
@@ -55,6 +49,10 @@ public class Connectionclass {
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public ArrayList<String> select(Context context,String model, final String models, final int index){
+        getConnection(context,model,models,index);
         return deVelden;
     }
 }
