@@ -36,12 +36,18 @@
         </item>
     </group>
     <group android:checkableBehavior="single">
-        <item android:title="Events">
+        <item android:title="@string/title_projects">
             <menu>
                 <item
-                    android:id="@+id/navigation_projects"
+                    android:id="@+id/navigation_assignments"
                     android:icon="@drawable/ic_project_24dp"
-                    android:title="@string/title_projects" />
+                    android:title="@string/projecten_opdrachten" />
+                <item
+                    android:id="@+id/navigation_challenges"
+                    android:title="@string/projecten_challenges" />
+                <item
+                    android:id="@+id/navigation_mystuff"
+                    android:title="@string/projecten_mystuff" />
             </menu>
         </item>
     </group>
