@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class Docent extends Account {
     private String opleiding_onderwijsinstelling, opleiding_opleidingsnaam;
+    private ArrayList<Lesvak> lesvakken;
 
     public boolean login (String email, String wachtwoord){
         //controleer email en wachtwoord combinatie
