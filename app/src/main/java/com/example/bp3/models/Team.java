@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Sven
+ */
+
 @Getter
 @Setter
 public class Team {
@@ -20,6 +24,6 @@ public class Team {
     }
 
     private void removeTeamMember(Student student) {
-        this.getTeamMembers().removeIf((Student s) -> (s.getStudentEmail() == student.getStudentEmail()));
+        this.getTeamMembers().removeIf((Student s) -> (s.getEmail().equals(student.getEmail())));
     }
 }

@@ -3,6 +3,10 @@ package com.example.bp3.models;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Sven
+ */
+
 @Getter
 @Setter
 public class OpdrachtAanbod {
