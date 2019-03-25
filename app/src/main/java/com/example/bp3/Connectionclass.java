@@ -27,14 +27,7 @@ public class Connectionclass {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://145.49.85.104:8080/bp3webservice/webresources/models." + model;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        data = buildItems(response, models, index);
-
-                    }
-
-                }, new Response.ErrorListener() {
+                response -> data = buildItems(response, models, index), new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error.getMessage());
