@@ -30,4 +30,7 @@
     <string name="projecten_opdrachten">Opdrachten</string>
     <string name="projecten_challenges">Challenges</string>
     <string name="projecten_mystuff">My Stuff</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
