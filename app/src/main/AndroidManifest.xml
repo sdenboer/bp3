@@ -1,31 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bp3">
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".activity_event"></activity>
+        android:theme="@style/AppTheme">
         <activity
             android:name=".views.NavDrawer"
             android:label="@string/title_activity_nav_drawer"
-<<<<<<< HEAD
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".views.ProjectActivity" />
-        <activity
-            android:name=".views.TabBar"
-            android:label="@string/title_activity_tab_bar"
-            android:theme="@style/AppTheme.NoActionBar" />
-=======
             android:theme="@style/AppTheme.NoActionBar"></activity>
->>>>>>> f1357bb7536d7455cf2ad6981cc9ef602970a444
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

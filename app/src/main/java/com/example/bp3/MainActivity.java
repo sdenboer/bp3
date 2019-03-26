@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.bp3.views.fragments.Challenge;
+import com.example.bp3.views.fragments.Event;
+import com.example.bp3.views.fragments.Event_Aanvragen;
 import com.example.bp3.views.fragments.MyStuff;
 import com.example.bp3.views.fragments.Opdracht;
 
@@ -68,28 +70,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-<<<<<<< HEAD
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.navigation_profile) {
-            // Handle the camera action
-        } else if (id == R.id.navigation_work) {
-
-        } else if (id == R.id.navigation_events) {
-            startActivity(new Intent(MainActivity.this, activity_event.class));
-
-
-        } else if (id == R.id.navigation_assignments) {
-
-        } else if (id == R.id.navigation_challenges) {
-
-        } else if (id == R.id.navigation_mystuff) {
-=======
         displaySelectedScreen(item.getItemId());
         return true;
     }
->>>>>>> f1357bb7536d7455cf2ad6981cc9ef602970a444
 
     private void displaySelectedScreen(int itemId) {
         Fragment fragment = null;
@@ -99,9 +82,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navigation_work:
                 break;
             case R.id.navigation_events:
+                fragment = new Event();
+                break;
+            case R.id.navigation_event_aanvragen:
+                fragment = new Event_Aanvragen();
                 break;
             case R.id.navigation_assignments:
-                fragment = new Opdracht();;
+                fragment = new Opdracht();
                 break;
             case R.id.navigation_challenges:
                 fragment = new Challenge();

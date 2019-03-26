@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class Connectionclass {
+    static RequestQueue req;
+
     ArrayList<String> deVelden = new ArrayList<>();
 
     public void getConnection(Context context,String model, final String models, final int index) {
@@ -28,6 +30,7 @@ public class Connectionclass {
         String url = "http://145.49.85.104:8080/bp3webservice/webresources/models." + model;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> buildItems(response, models , index), error -> System.out.println(error.getMessage()));
+        System.out.println(stringRequest);
         queue.add(stringRequest);
     }
 
