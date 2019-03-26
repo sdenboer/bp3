@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.example.bp3.R;
 import com.example.bp3.views.fragments.ViewFragment;
 
-public class Challenge extends ViewFragment {
+public class ChallengeView extends ViewFragment {
     @Override
     protected int layoutFragment() {
         return R.layout.fragment_challenge;

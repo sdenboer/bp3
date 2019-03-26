@@ -2,7 +2,7 @@ package com.example.bp3.views.fragments;
 
 import com.example.bp3.R;
 
-public class Opdracht extends ViewFragment {
+public class OpdrachtView extends ViewFragment {
     @Override
     protected int layoutFragment() {
         return R.layout.fragment_project;
