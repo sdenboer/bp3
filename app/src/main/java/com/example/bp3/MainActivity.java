@@ -9,19 +9,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.example.bp3.models.Student;
-import com.example.bp3.models.Tag;
 import com.example.bp3.utils.helpers.RestApiHelper;
 import com.example.bp3.views.fragments.ChallengeView;
 import com.example.bp3.views.fragments.MyStuffView;
 import com.example.bp3.views.fragments.OpdrachtView;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -33,36 +27,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        //Voor meerdere objecten
-        RestApiHelper tagJSON = RestApiHelper
-                .prepareQuery("tag")
-                .klasse(Tag[].class)
-                .build();
-        tagJSON.returnJSONArray(ja -> {
-           List<Tag> tags = Arrays.asList((Tag[]) tagJSON.toPojo(ja));
-            //      In deze array zitten alle tag objecten.
-            //      voeg hieronder code toe om iets met de objecten te doen. Bijvoorbeeld:
-                  tags.forEach(tag -> Log.d("HELLO", tag.getTag()));
-        });
-
-        //Voor een enkel object (1 resultaat)
-        RestApiHelper studentJSON = RestApiHelper
-                .prepareQuery("student")
-                .klasse(Student.class)
-                .parameters(Arrays.asList("jklaas@student.avans.nl"))
-                .build();
-        studentJSON.returnJSONObject(jo -> {
-            Student student = (Student) studentJSON.toPojo(jo);
-            //      In dit object zit een Student object.
-            //      voeg hieronder code toe om iets met het object te doen. Bijvoorbeeld:
-                  Log.d("HELLO", student.getNaam());
-        });
-
-        //POST POJO
-        Tag t = new Tag("test11111");
-        RestApiHelper.prepareQuery("tag").build().postJSON(t);
-
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

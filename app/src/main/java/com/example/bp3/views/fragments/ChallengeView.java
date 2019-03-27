@@ -1,24 +1,21 @@
 package com.example.bp3.views.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bp3.R;
-import com.example.bp3.views.fragments.ViewFragment;
+import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
 public class ChallengeView extends ViewFragment {
     @Override
-    protected int layoutFragment() {
-        return R.layout.fragment_challenge;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_challenge, container, false);
     }
 
     @Override
-    protected int title() {
-        return R.string.projecten_mystuff;
+    public int title() {
+        return R.string.projecten_challenges;
     }
 }

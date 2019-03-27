@@ -1,23 +1,22 @@
 package com.example.bp3.views.menus;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bp3.R;
-import com.example.bp3.views.fragments.ViewFragment;
+import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
 public class NavDrawer extends ViewFragment {
 
     @Override
-    protected int layoutFragment() {
-        return R.layout.activity_nav_drawer;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_nav_drawer, container, false);
     }
 
     @Override
-    protected int title() {
+    public int title() {
         return 0;
     }
 }
