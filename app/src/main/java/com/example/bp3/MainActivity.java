@@ -10,21 +10,29 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.example.bp3.utils.helpers.RestApiHelper;
+import com.example.bp3.views.fragments.ChallengeView;
+import com.example.bp3.views.fragments.MyStuffView;
+import com.example.bp3.views.fragments.OpdrachtView;
 
+<<<<<<< HEAD
 import com.example.bp3.views.fragments.Challenge;
 import com.example.bp3.views.fragments.Event;
 import com.example.bp3.views.fragments.Event_Aanvragen;
 import com.example.bp3.views.fragments.MyStuff;
 import com.example.bp3.views.fragments.Opdracht;
+=======
+>>>>>>> 11e83806826c0653fed66dde0886eefad2b7cb9b
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        RestApiHelper.initRestApiHelper(MainActivity.this);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -88,13 +96,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new Event_Aanvragen();
                 break;
             case R.id.navigation_assignments:
+<<<<<<< HEAD
                 fragment = new Opdracht();
+=======
+                fragment = new OpdrachtView();
+>>>>>>> 11e83806826c0653fed66dde0886eefad2b7cb9b
                 break;
             case R.id.navigation_challenges:
-                fragment = new Challenge();
+                fragment = new ChallengeView();
                 break;
             case R.id.navigation_mystuff:
-                fragment = new MyStuff();
+                fragment = new MyStuffView();
                 break;
         }
         if (fragment != null) {
@@ -105,6 +117,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-
     }
+
 }
