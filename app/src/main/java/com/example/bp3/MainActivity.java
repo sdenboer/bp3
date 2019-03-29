@@ -9,19 +9,21 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.example.bp3.utils.helpers.RestApiHelper;
+import com.example.bp3.views.fragments.ChallengeView;
+import com.example.bp3.views.fragments.MyStuffView;
+import com.example.bp3.views.fragments.OpdrachtView;
 
-import com.example.bp3.views.fragments.Challenge;
-import com.example.bp3.views.fragments.MyStuff;
-import com.example.bp3.views.fragments.Opdracht;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        RestApiHelper.initRestApiHelper(MainActivity.this);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -81,13 +83,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navigation_events:
                 break;
             case R.id.navigation_assignments:
-                fragment = new Opdracht();;
+                fragment = new OpdrachtView();
                 break;
             case R.id.navigation_challenges:
-                fragment = new Challenge();
+                fragment = new ChallengeView();
                 break;
             case R.id.navigation_mystuff:
-                fragment = new MyStuff();
+                fragment = new MyStuffView();
                 break;
         }
         if (fragment != null) {
@@ -98,6 +100,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-
     }
+
 }
