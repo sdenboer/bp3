@@ -1,6 +1,5 @@
 package com.example.bp3;
 
-import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -14,17 +13,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.example.bp3.utils.helpers.RestApiHelper;
 import com.example.bp3.views.fragments.ChallengeView;
+import com.example.bp3.views.fragments.Event;
+import com.example.bp3.views.fragments.Event_Aanvragen;
 import com.example.bp3.views.fragments.MyStuffView;
 import com.example.bp3.views.fragments.OpdrachtView;
 
-<<<<<<< HEAD
-import com.example.bp3.views.fragments.Challenge;
-import com.example.bp3.views.fragments.Event;
-import com.example.bp3.views.fragments.Event_Aanvragen;
-import com.example.bp3.views.fragments.MyStuff;
-import com.example.bp3.views.fragments.Opdracht;
-=======
->>>>>>> 11e83806826c0653fed66dde0886eefad2b7cb9b
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -96,11 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new Event_Aanvragen();
                 break;
             case R.id.navigation_assignments:
-<<<<<<< HEAD
-                fragment = new Opdracht();
-=======
                 fragment = new OpdrachtView();
->>>>>>> 11e83806826c0653fed66dde0886eefad2b7cb9b
                 break;
             case R.id.navigation_challenges:
                 fragment = new ChallengeView();

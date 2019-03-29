@@ -1,63 +1,67 @@
-package com.example.bp3.views.fragments;
+package com.example.bp3.viewmodels;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+
 import com.example.bp3.R;
 import com.example.bp3.custom.EventRecyclerViewAdapter;
 import com.example.bp3.models.AanbodEvent;
-import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Event extends ViewFragment {
+
+public class EventViewModel extends AppCompatActivity {
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private static String LOG_TAG = "Event";
+    private static String LOG_TAG = "CardViewActivity";
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_event, container, false);
+        setContentView(R.layout.fragment_event);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        //mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view2);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(inflater.getContext());
+        mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new EventRecyclerViewAdapter(getDataSet());
         mRecyclerView.setAdapter(mAdapter);
 
-        return view;
+        // Code to Add an item with default animation
+        //((MyRecyclerViewAdapter) mAdapter).addItem(obj, index);
+
+        // Code to remove an item with default animation
+        //((MyRecyclerViewAdapter) mAdapter).deleteItem(index);
     }
 
-    @Override
-    public int title() {
-        return R.string.events_event;
-    }
-
 
     @Override
-    public void onResume() {
+    protected void onResume() {
         super.onResume();
-        System.out.println("OnResume");
-        ((EventRecyclerViewAdapter) mAdapter).setOnItemClickListener((position, v)
-                -> Log.i(LOG_TAG, " Clicked on Item " + position));
+        ((EventRecyclerViewAdapter) mAdapter).setOnItemClickListener(new EventRecyclerViewAdapter
+                .MyClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                Log.i(LOG_TAG, " Clicked on Item " + position);
+            }
+        });
     }
 
     private ArrayList<AanbodEvent> getDataSet() {
         ArrayList results = new ArrayList<AanbodEvent>();
-        String Date1="29/03/2019";
+        /*String sDate1="29/03/2019";
         Date datum = null;
         try {
-            datum = new SimpleDateFormat("dd/MM/yyyy").parse(Date1);
+            datum = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -66,7 +70,7 @@ public class Event extends ViewFragment {
             AanbodEvent obj = new AanbodEvent(index, "Naam" , "Loatie", datum,
                     5, "Omschrijving","Email");
             results.add(index, obj);
-        }
+        }*/
         return results;
     }
 }
