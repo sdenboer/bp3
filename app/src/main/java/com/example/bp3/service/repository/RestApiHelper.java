@@ -1,4 +1,4 @@
-package com.example.bp3.utils.helpers;
+package com.example.bp3.service.repository;
 import android.content.Context;
 import android.util.Log;
 
@@ -9,8 +9,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.bp3.models.Opdracht;
-import com.example.bp3.models.Tag;
+import com.example.bp3.service.models.Opdracht;
+import com.example.bp3.service.models.Tag;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -38,7 +38,7 @@ import lombok.Builder;
 public class RestApiHelper {
     private Class<?> klasse;
     private String urlModel;
-    private List<String> parameters;
+    private List<Object> parameters;
     private static RequestQueue requestQueue;
 
     //APPLICATION ONLOAD
@@ -207,7 +207,8 @@ public class RestApiHelper {
     protected class helperGuide {
 
         protected helperGuide() {
-            //GET request voor meerdere objecten (bijvoorbeeld een findAll)
+            //GET request voor een LIST van meerdere objecten (bijvoorbeeld een findAll)
+            //Kijk in de webservice naar de modelFACADERest om te zien wat er verwacht wordt.
             RestApiHelper tagJSON = RestApiHelper
                     .prepareQuery("tag")
                     .klasse(Tag[].class)
@@ -268,6 +269,30 @@ public class RestApiHelper {
                     });
         }
     }
+
+    //ADD AND REMOVE A TEAM MEMBER
+//    RestApiHelper team = RestApiHelper
+//            .prepareQuery("team")
+//            .klasse(Team.class)
+//            .parameters(Arrays.asList("1beroepsproduct3 wit"))
+//            .build();
+//        team.getObject(ja -> {
+//        Team t = (Team)team.toPOJO(ja);
+//        RestApiHelper tagJSON = RestApiHelper
+//                .prepareQuery("student")
+//                .klasse(Student.class)
+//                .parameters(Arrays.asList("sven@avans.nl"))
+//                .build();
+//        tagJSON.getObject(jo -> {
+//            Student currentSession = (Student)tagJSON.toPOJO(jo);
+//            t.addTeamMember(currentSession);
+//            RestApiHelper.prepareQuery("team").klasse(Team.class).parameters(Arrays.asList("1beroepsproduct3%20wit")).build().update(t, response -> {
+//                Log.d("HELLO", "IM POSTED");
+//            });
+//        });
+//    });
 }
+
+
 
 

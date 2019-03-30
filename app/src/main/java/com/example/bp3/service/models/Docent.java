@@ -1,13 +1,19 @@
-package com.example.bp3.models;
+package com.example.bp3.service.models;
 
-import lombok.Setter;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+
 import lombok.Getter;
+import lombok.Setter;
 
-@Setter
 @Getter
-public class Student extends Account {
-    private int leerjaar;
-    private String opleiding_onderwijsinstelling, opleiding_opleidingsnaam;
+@Setter
+public class Docent extends Account {
+    @SerializedName("opleiding")
+    private Opleiding opleiding;
+    @SerializedName("lesvakCollection")
+    private ArrayList<Lesvak> lesvakken;
 
     public boolean login (String email, String wachtwoord){
         //controleer email en wachtwoord combinatie

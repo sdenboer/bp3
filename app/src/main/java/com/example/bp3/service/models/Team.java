@@ -1,4 +1,6 @@
-package com.example.bp3.models;
+package com.example.bp3.service.models;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
@@ -14,16 +16,17 @@ import lombok.Setter;
 public class Team {
 
     private String teamNaam;
+    @SerializedName("studentCollection")
     private ArrayList<Student> teamMembers;
 
-    public Team(){
+    public Team(String teamNaam, ArrayList<Student> teamMembers){
     }
 
-    private void addTeamMember(Student student) {
+    public void addTeamMember(Student student) {
         this.getTeamMembers().add(student);
     }
 
-    private void removeTeamMember(Student student) {
+    public void removeTeamMember(Student student) {
         this.getTeamMembers().removeIf((Student s) -> (s.getEmail().equals(student.getEmail())));
     }
 }

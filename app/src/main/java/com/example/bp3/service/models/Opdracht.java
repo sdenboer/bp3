@@ -1,9 +1,7 @@
-package com.example.bp3.models;
+package com.example.bp3.service.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

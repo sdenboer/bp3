@@ -1,4 +1,4 @@
-package com.example.bp3.models;
+package com.example.bp3.service.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class Account {
-    @SerializedName(value="docentEmail", alternate = {"bedrijfsemail", "studenEmail"})
+    @SerializedName(value="studentEmail", alternate = {"bedrijfsemail", "docentEmail"})
     protected String email;
     @SerializedName("wachtwoord")
     protected String wachtwoord;

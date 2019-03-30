@@ -1,12 +1,13 @@
-package com.example.bp3.models;
+package com.example.bp3.service.models;
 
-import lombok.Getter;
 import lombok.Setter;
+import lombok.Getter;
 
-@Getter
 @Setter
-public class Bedrijf extends Account {
-    private String email_contactpersoon, telefoon_contactpersoon;
+@Getter
+public class Student extends Account {
+    private int leerjaar;
+    private Opleiding opleiding;
 
     public boolean login (String email, String wachtwoord){
         //controleer email en wachtwoord combinatie

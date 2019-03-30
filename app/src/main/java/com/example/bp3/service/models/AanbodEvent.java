@@ -1,4 +1,4 @@
-package com.example.bp3.models;
+package com.example.bp3.service.models;
 
 import java.util.Date;
 import lombok.Getter;
