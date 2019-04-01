@@ -32,6 +32,10 @@
                     android:id="@+id/navigation_events"
                     android:icon="@drawable/ic_event_24dp"
                     android:title="@string/title_events" />
+                <item
+                    android:id="@+id/navigation_event_aanvragen"
+                    android:title="Event aanvragen" />
+
             </menu>
         </item>
     </group>
