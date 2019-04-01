@@ -43,7 +43,7 @@
         <item android:title="@string/title_projects">
             <menu>
                 <item
-                    android:id="@+id/navigation_assignments"
+                    android:id="@+id/navigation_opdrachten"
                     android:icon="@drawable/ic_project_24dp"
                     android:title="@string/projecten_opdrachten" />
                 <item

@@ -1,36 +1,51 @@
 package com.example.bp3;
 
+import android.arch.lifecycle.ViewModelProviders;
+
+import android.databinding.DataBindingUtil;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.example.bp3.utils.helpers.RestApiHelper;
+import android.view.View;
+
+import com.example.bp3.databinding.ActivityMainBinding;
+import com.example.bp3.service.models.OpdrachtAanbod;
+import com.example.bp3.service.repository.RestApiHelper;
+import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
+import com.example.bp3.views.adapters.OpdrachtAanbodAdapter;
 import com.example.bp3.views.fragments.ChallengeView;
 import com.example.bp3.views.fragments.Event;
 import com.example.bp3.views.fragments.Event_Aanvragen;
 import com.example.bp3.views.fragments.MyStuffView;
-import com.example.bp3.views.fragments.OpdrachtView;
+import com.example.bp3.views.fragments.Opdracht.OpdrachtLesvak;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    ActivityMainBinding mainBinding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         RestApiHelper.initRestApiHelper(MainActivity.this);
-
+        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.activity_nav);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -38,14 +53,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         //DIT WORDT HET HOMESCREEN
 //        displaySelectedScreen(R.id.navigation_assignments);
+
+
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.activity_nav);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -53,20 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.nav_drawer, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -88,8 +90,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navigation_event_aanvragen:
                 fragment = new Event_Aanvragen();
                 break;
-            case R.id.navigation_assignments:
-                fragment = new OpdrachtView();
+            case R.id.navigation_opdrachten:
+                fragment = new OpdrachtLesvak();
                 break;
             case R.id.navigation_challenges:
                 fragment = new ChallengeView();
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ft.commit();
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.activity_nav);
         drawer.closeDrawer(GravityCompat.START);
     }
 
