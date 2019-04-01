@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Setter
 @Getter
-public class Student extends Account implements Parcelable {
+public class Student extends Account {
     private int leerjaar;
     private Opleiding opleiding;
 
@@ -28,15 +28,5 @@ public class Student extends Account implements Parcelable {
         //pas account aan met de doorgegeven email met de data in het object
         //stuur boolean terug op succes
         return false;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
     }
 }

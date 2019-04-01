@@ -22,12 +22,16 @@ import android.view.View;
 
 import com.example.bp3.databinding.ActivityMainBinding;
 import com.example.bp3.service.models.OpdrachtAanbod;
+import com.example.bp3.service.models.Tag;
 import com.example.bp3.service.repository.RestApiHelper;
 import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
 import com.example.bp3.views.adapters.OpdrachtAanbodAdapter;
 import com.example.bp3.views.fragments.ChallengeView;
 import com.example.bp3.views.fragments.MyStuffView;
 import com.example.bp3.views.fragments.Opdracht.OpdrachtLesvak;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -53,8 +57,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         //DIT WORDT HET HOMESCREEN
 //        displaySelectedScreen(R.id.navigation_assignments);
-
-
     }
 
     @Override

@@ -36,11 +36,7 @@ public class TeamRepository extends AbstractRepository{
     public LiveData<List<Team>> beschikbareTeams(int opdrachtId) {
         final MutableLiveData<List<Team>> data = new MutableLiveData<>();
         restApiHelper = RestApiHelper.prepareQuery(urlModel).klasse(Team[].class).parameters(Arrays.asList("find", opdrachtId)).build();
-        restApiHelper.getArray(jsonArray -> {
-            JSONArray t = jsonArray;
-            Log.d("JO", String.valueOf(t.length()));
-                        data.setValue(Arrays.asList((Team[]) restApiHelper.toPOJO(jsonArray)));
-        });
+        restApiHelper.getArray(jsonArray -> data.setValue(Arrays.asList((Team[]) restApiHelper.toPOJO(jsonArray))));
         return data;
     }
 

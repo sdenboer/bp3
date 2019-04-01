@@ -1,8 +1,8 @@
 package com.example.bp3.service.models;
 
 import com.google.gson.annotations.SerializedName;
-import com.example.bp3.libraries.models.ExpandableGroup;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +15,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Team extends ExpandableGroup<Student> {
+public class Team implements Serializable {
 
     private String teamNaam;
     @SerializedName("studentCollection")
     private ArrayList<Student> teamMembers;
 
-    public Team(String teamNaam, List<Student> teamMembers){
-        super(teamNaam, teamMembers);
+    public Team(String teamNaam){
         this.teamNaam = teamNaam;
     }
 
