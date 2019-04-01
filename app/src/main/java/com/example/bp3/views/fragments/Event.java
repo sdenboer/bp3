@@ -47,7 +47,6 @@ public class Event extends ViewFragment {
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println("OnResume");
         ((EventRecyclerViewAdapter) mAdapter).setOnItemClickListener((position, v)
                 -> Log.i(LOG_TAG, " Clicked on Item " + position));
     }
