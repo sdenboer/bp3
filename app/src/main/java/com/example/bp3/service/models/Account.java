@@ -12,7 +12,7 @@ public abstract class Account {
     protected String email;
     @SerializedName("wachtwoord")
     protected String wachtwoord;
-    @SerializedName("naam")
+    @SerializedName(value = "naam", alternate = {"bedrijfsnaam"} )
     protected  String naam;
     @SerializedName("telefoon")
     protected  String telefoon;

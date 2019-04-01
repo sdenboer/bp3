@@ -1,12 +1,17 @@
 package com.example.bp3.service.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class Bedrijf extends Account {
-    private String email_contactpersoon, telefoon_contactpersoon;
+    @SerializedName("emailContactpersoon")
+    private String email_contactpersoon;
+    @SerializedName("telefoonContactpersoon")
+    private String telefoon_contactpersoon;
 
     public boolean login (String email, String wachtwoord){
         //controleer email en wachtwoord combinatie
