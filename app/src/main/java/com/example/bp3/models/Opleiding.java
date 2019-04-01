@@ -1,5 +1,7 @@
 package com.example.bp3.models;
 
+import java.util.ArrayList;
+
 import lombok.Setter;
 import lombok.Getter;
 
