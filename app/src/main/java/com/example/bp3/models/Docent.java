@@ -1,5 +1,7 @@
 package com.example.bp3.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 import lombok.Getter;
@@ -8,7 +10,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Docent extends Account {
-    private String opleiding_onderwijsinstelling, opleiding_opleidingsnaam;
+    @SerializedName("opleiding")
+    private Opleiding opleiding;
+    @SerializedName("lesvakCollection")
     private ArrayList<Lesvak> lesvakken;
 
     public boolean login (String email, String wachtwoord){
