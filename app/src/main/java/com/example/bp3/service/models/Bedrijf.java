@@ -13,15 +13,30 @@ public class Bedrijf extends Account {
     @SerializedName("telefoonContactpersoon")
     private String telefoon_contactpersoon;
 
+    public Bedrijf(String email, String wachtwoord, String naam, String telefoon, String email_contactpersoon, String telefoon_contactpersoon) {
+        super(email, wachtwoord, naam, telefoon);
+        this.email_contactpersoon = email_contactpersoon;
+        this.telefoon_contactpersoon = telefoon_contactpersoon;
+    }
+
     public boolean login (String email, String wachtwoord){
         //controleer email en wachtwoord combinatie
         //stuur boolean terug op match
+
+        /*
+        String email, wachtwoord, naam, telefoon, email_contactpersoon, telefoon_contactpersoon;
+        Bedrijf bedrijf = new Bedrijf(email, wachtwoord, naam, telefoon, email_contactpersoon, telefoon_contactpersoon);
+
+        currentUser = bedrijf;
+        */
+
         return false;
     }
 
     public boolean toevoegenAccount(){
         //voeg account toe met informatie uit het object
         //stuur boolean terug op succes
+
         return false;
     }
 
