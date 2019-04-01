@@ -1,4 +1,4 @@
-package com.example.bp3.custom;
+package com.example.bp3.views.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,9 +8,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.bp3.R;
-import com.example.bp3.models.AanbodEvent;
+import com.example.bp3.service.models.AanbodEvent;
 
 import java.util.ArrayList;
+
+/**
+ * @author Koen Franken
+ */
 
 public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecyclerViewAdapter.DataObjectHolder> {
     private static String LOG_TAG = "EventRecyclerViewAdapter";

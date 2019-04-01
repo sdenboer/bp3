@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.bp3.R;
-import com.example.bp3.custom.EventRecyclerViewAdapter;
-import com.example.bp3.models.AanbodEvent;
+import com.example.bp3.views.adapters.EventRecyclerViewAdapter;
+import com.example.bp3.service.models.AanbodEvent;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
 import java.text.ParseException;

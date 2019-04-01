@@ -8,8 +8,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.bp3.R;
-import com.example.bp3.custom.EventRecyclerViewAdapter;
-import com.example.bp3.models.AanbodEvent;
+import com.example.bp3.views.adapters.EventRecyclerViewAdapter;
+import com.example.bp3.service.models.AanbodEvent;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,19 +28,11 @@ public class EventViewModel extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_event);
-
-        //mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view2);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new EventRecyclerViewAdapter(getDataSet());
         mRecyclerView.setAdapter(mAdapter);
-
-        // Code to Add an item with default animation
-        //((MyRecyclerViewAdapter) mAdapter).addItem(obj, index);
-
-        // Code to remove an item with default animation
-        //((MyRecyclerViewAdapter) mAdapter).deleteItem(index);
     }
 
 
@@ -58,7 +50,7 @@ public class EventViewModel extends AppCompatActivity {
 
     private ArrayList<AanbodEvent> getDataSet() {
         ArrayList results = new ArrayList<AanbodEvent>();
-        /*String sDate1="29/03/2019";
+        String sDate1="29/03/2019";
         Date datum = null;
         try {
             datum = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
@@ -70,7 +62,7 @@ public class EventViewModel extends AppCompatActivity {
             AanbodEvent obj = new AanbodEvent(index, "Naam" , "Loatie", datum,
                     5, "Omschrijving","Email");
             results.add(index, obj);
-        }*/
+        }
         return results;
     }
 }
