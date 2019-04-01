@@ -27,6 +27,8 @@ import com.example.bp3.service.repository.RestApiHelper;
 import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
 import com.example.bp3.views.adapters.OpdrachtAanbodAdapter;
 import com.example.bp3.views.fragments.ChallengeView;
+import com.example.bp3.views.fragments.Event;
+import com.example.bp3.views.fragments.Event_Aanvragen;
 import com.example.bp3.views.fragments.MyStuffView;
 import com.example.bp3.views.fragments.Opdracht.OpdrachtLesvak;
 
@@ -85,6 +87,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navigation_work:
                 break;
             case R.id.navigation_events:
+                fragment = new Event();
+                break;
+            case R.id.navigation_event_aanvragen:
+                fragment = new Event_Aanvragen();
                 break;
             case R.id.navigation_opdrachten:
                 fragment = new OpdrachtLesvak();
