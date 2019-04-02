@@ -15,6 +15,12 @@ public class Docent extends Account {
     @SerializedName("lesvakCollection")
     private ArrayList<Lesvak> lesvakken;
 
+    public Docent(String email, String wachtwoord, String naam, String telefoon, Opleiding opleiding, ArrayList<Lesvak> lesvakken) {
+        super(email, wachtwoord, naam, telefoon);
+        this.opleiding = opleiding;
+        this.lesvakken = lesvakken;
+    }
+
     public boolean login (String email, String wachtwoord){
         //controleer email en wachtwoord combinatie
         //stuur boolean terug op match
