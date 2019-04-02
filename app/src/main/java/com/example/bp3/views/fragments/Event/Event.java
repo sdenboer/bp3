@@ -69,19 +69,20 @@ public class Event extends ViewFragment{
         AanbodEvent event = aanbodEvent;
         bundle.putSerializable("event", event);
         frag.setArguments(bundle);
-
+        t.addToBackStack(null);
         t.replace(R.id.fragment_container, frag);
         t.commit();
     }
 
     private ArrayList<AanbodEvent> getDataSet() {
 
-        Bedrijf bedrijf = new Bedrijf();
+        Bedrijf bedrijf = new Bedrijf("mail","ww","naam","tel","mailc","telc");
         EventSoort ev = new EventSoort("workshop");
 
 
         LiveData<List<EventSoort>> data = new MutableLiveData<>();
-        //EventRepository re = new EventRepository();
+        EventRepository re = new EventRepository();
+        re.getAllAanbodevents();
         //data = re.getSoorten();
         //data = re.getInstance().getSoorten();
         String x = data.toString();
@@ -89,26 +90,18 @@ public class Event extends ViewFragment{
         System.out.println("tostring:          " + x);
 
 
-
-
-
         String Date1="29/03/2019";
-        Date datum = null;
-        try {
-            datum = new SimpleDateFormat("dd/MM/yyyy").parse(Date1);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
-        AanbodEvent obj2 = new AanbodEvent(88, "Naam" , "Loatie", datum,
-                5, "Omschrijving",bedrijf, ev);
+        AanbodEvent obj2 = new AanbodEvent(88, "Workshop HTML" , "Kerkstraat 15 Eindhoven", Date1,
+                50, "Leuke workshop over de basisbegrippen van HTML",bedrijf, ev);
         results.add(obj2);
 
         for (int index = 0; index < 20; index++) {
-            AanbodEvent obj = new AanbodEvent(index, "Naam" , "Loatie", datum,
+            AanbodEvent obj = new AanbodEvent(index, "Naam" , "Loatie", Date1,
                     5, "Omschrijving",bedrijf, ev);
             results.add(obj);
         }
+
 
 
         return results;

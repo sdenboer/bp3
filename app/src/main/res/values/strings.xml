@@ -41,7 +41,8 @@
     <string name="eventpage_naam">Naam: </string>
     <string name="eventpage_soort">Soort: </string>
     <string name="eventpage_datum">Datum: </string>
-    <string name="eventpage_Locatie">Locatie: </string>
+    <string name="eventpage_locatie">Locatie: </string>
+    <string name="eventpage_aantalp">Maximaal aantal personen: </string>
     <string name="eventpage_contact">Orginisator: </string>
     <string name="eventpage_omschrijving">Omschrijving: </string>
 

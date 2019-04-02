@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.bp3.R;
 import com.example.bp3.service.models.AanbodEvent;
@@ -19,21 +20,23 @@ public class EventPage extends ViewFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_eventpage, container, false);
-
-        Button btnTerug = (Button) view.findViewById(R.id.EventBtnTerug);
-        Button btnInschrijf = (Button) view.findViewById(R.id.EventbtnInschrijf);
         event = (AanbodEvent) getArguments().getSerializable("event");
+        Button btnInschrijf = (Button) view.findViewById(R.id.EventbtnInschrijf);
 
-        //code
-
-        //code
-
-        btnTerug.setOnClickListener(v -> {
-            FragmentTransaction t = this.getFragmentManager().beginTransaction();
-            Fragment frag = new Event();
-            t.replace(R.id.fragment_container, frag);
-            t.commit();
-        });
+        TextView txtNaam = (TextView) view.findViewById(R.id.textNaamevent);
+        txtNaam.setText("Naam: " +  event.getNaam());
+        TextView txtSoort = (TextView) view.findViewById(R.id.textSoortevent);
+        txtSoort.setText("Soort event: " +  event.getSoort().getSoort());
+        TextView txtDatum = (TextView) view.findViewById(R.id.textDatumevent);
+        txtDatum.setText("Datum: " +  event.getDatumentijd());
+        TextView txtLocatie = (TextView) view.findViewById(R.id.textLocatieevent);
+        txtLocatie.setText("Locatie: " +  event.getLocatie());
+        TextView txtAantalp = (TextView) view.findViewById(R.id.textAantalpevent);
+        txtAantalp.setText("Maximaal aantal personen: " +  event.getAantalPersonen());
+        TextView txtContact = (TextView) view.findViewById(R.id.textContactPevent);
+        txtContact.setText("Contactpersoon: " +  event.getAccount().getEmail());
+        TextView txtOmschrijf = (TextView) view.findViewById(R.id.textOmschrijvingevent);
+        txtOmschrijf.setText("Omschrijving: " +  event.getOmschrijving());
 
         btnInschrijf.setOnClickListener(v -> {
             //code
