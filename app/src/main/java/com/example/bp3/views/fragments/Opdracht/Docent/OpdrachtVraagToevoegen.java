@@ -84,7 +84,7 @@ public class OpdrachtVraagToevoegen extends ViewFragment {
     }
 
     private void getLayoutElements(View root) {
-        mDeadline = root.findViewById(R.id.opdrachtvraag_deadline);
+        mDeadline = root.findViewById(R.id.opdrachtvraag_add_deadline);
         mLesvak = root.findViewById(R.id.opdrachtvraag_add_lesvak);
         mOpdrachtnaam = root.findViewById(R.id.opdrachtvraag_add_opdrachtnaam);
         mStudMin = root.findViewById(R.id.opdrachtvraag_add_min);
