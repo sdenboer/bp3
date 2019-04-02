@@ -16,6 +16,12 @@ public class Opleiding {
     @SerializedName("lesvakCollection")
     private ArrayList<Lesvak> lesvakken;
 
+    public Opleiding(String niveau, OpleidingPK opleidingPK, ArrayList<Lesvak> lesvakken) {
+        this.niveau = niveau;
+        this.opleidingPK = opleidingPK;
+        this.lesvakken = lesvakken;
+    }
+
     public class OpleidingPK {
         @SerializedName("onderwijsinstelling")
         private String onderwijsinstelling;
