@@ -12,6 +12,12 @@ public class Student extends Account implements Parcelable {
     private int leerjaar;
     private Opleiding opleiding;
 
+    public Student(String email, String wachtwoord, String naam, String telefoon, int leerjaar, Opleiding opleiding) {
+        super(email, wachtwoord, naam, telefoon);
+        this.leerjaar = leerjaar;
+        this.opleiding = opleiding;
+    }
+
     public boolean login (String email, String wachtwoord){
         //controleer email en wachtwoord combinatie
         //stuur boolean terug op match

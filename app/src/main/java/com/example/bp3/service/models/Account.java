@@ -17,10 +17,17 @@ public abstract class Account {
     @SerializedName("telefoon")
     protected  String telefoon;
 
-    public Account() {
+    public Account(String email, String wachtwoord, String naam, String telefoon) {
+        this.email = email;
+        this.wachtwoord = wachtwoord;
+        this.naam = naam;
+        this.telefoon = telefoon;
     }
 
     public abstract boolean login(String email, String wachtwoord);
     public abstract boolean toevoegenAccount();
+
     public abstract boolean bewerkenAccount(String email);
+    static Account currentUser;
 }
+
