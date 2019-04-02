@@ -34,8 +34,4 @@ public class Activiteit {
         return formatter.format(time);
     }
 
-    public String toUglyDeadline(Timestamp ts){
-
-        return String.valueOf(ts);
-    }
 }

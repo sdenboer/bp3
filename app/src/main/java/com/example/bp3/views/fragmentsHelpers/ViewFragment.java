@@ -16,6 +16,8 @@ public abstract class ViewFragment extends Fragment {
         getActivity().setTitle(this.title());
     }
 
+
+
     public abstract int title();
 
 }

@@ -113,7 +113,7 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
                     try {
                         listener.onItemClick(member.get(i));
                     } catch (IndexOutOfBoundsException e) {
-                        listener.onItemClick(new Student());
+//                        listener.onItemClick(new Student());
                     }
 
                 }

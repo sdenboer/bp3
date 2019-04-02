@@ -3,16 +3,7 @@ package com.example.bp3.service.repository;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
-
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.service.models.Team;
-import com.google.gson.JsonArray;
-
-import org.json.JSONArray;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +14,7 @@ public class TeamRepository extends AbstractRepository{
 
 
     @Override
-    protected String getUrlModel() {
+    protected String setUrlModel() {
         return "team";
     }
 
@@ -60,7 +51,7 @@ public class TeamRepository extends AbstractRepository{
     }
 
     public void delete(Team team) {
-        RestApiHelper.prepareQuery("opdrachtaanbod")
+        RestApiHelper.prepareQuery(urlModel)
                 .parameters(Arrays.asList(team.getTeamNaam()))
                 .build()
                 .delete(callback -> Log.d("DELETE", "Het object is verwijderd!"));

@@ -46,4 +46,14 @@
     <string name="contact">contact</string>
     <string name="teams">Teams</string>
     <string name="team_toevoegen">team toevoegen</string>
+    <string name="mijn_activiteiten">Mijn activiteiten</string>
+    <string name="mijn_challenges">Mijn challenges</string>
+
+
+    <string-array name="leerjaar_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>

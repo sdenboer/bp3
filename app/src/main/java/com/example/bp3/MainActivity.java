@@ -3,6 +3,7 @@ package com.example.bp3;
 import android.databinding.DataBindingUtil;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,18 +11,24 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.bp3.databinding.ActivityMainBinding;
 import com.example.bp3.service.repository.RestApiHelper;
-import com.example.bp3.views.fragments.ChallengeView;
+import com.example.bp3.views.fragments.Challenge.ChallengeView;
 import com.example.bp3.views.fragments.Event;
 import com.example.bp3.views.fragments.Event_Aanvragen;
-import com.example.bp3.views.fragments.Opdracht.MijnActiviteiten;
-import com.example.bp3.views.fragments.Opdracht.OpdrachtLesvak;
+import com.example.bp3.views.fragments.MijnActiviteiten.MijnActiviteiten;
+import com.example.bp3.views.fragments.Opdracht.Docent.IDataSendDeadline;
+import com.example.bp3.views.fragments.Opdracht.Docent.OpdrachtVraagToevoegen;
+import com.example.bp3.views.fragments.Opdracht.Student.OpdrachtAanbodLesvak;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, IDataSendDeadline {
 
     ActivityMainBinding mainBinding;
 
@@ -78,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new Event_Aanvragen();
                 break;
             case R.id.navigation_opdrachten:
-                fragment = new OpdrachtLesvak();
+                fragment = new OpdrachtVraagToevoegen();
                 break;
             case R.id.navigation_challenges:
                 fragment = new ChallengeView();
@@ -89,7 +96,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container, fragment);
+            ft.addToBackStack(null);
+            ft.replace(R.id.fragment_container, fragment, "fragment");
             ft.commit();
         }
 
@@ -97,4 +105,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
     }
 
+    @Override
+    public void sendData(Map<String, Integer> data) {
+        FragmentManager manager = getSupportFragmentManager();
+        OpdrachtVraagToevoegen fragment= (OpdrachtVraagToevoegen) manager.findFragmentByTag("fragment");
+        assert fragment != null;
+        fragment.updateDeadline(data);
+    }
 }

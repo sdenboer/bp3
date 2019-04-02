@@ -22,6 +22,10 @@ public class OpdrachtAanbodViewModel extends AndroidViewModel implements Seriali
         return opdrachtAanbod.getBedrijf().getNaam();
     }
 
+    public LiveData<List<OpdrachtAanbod>> getStudentZietEigenOpdrachten(String email) {
+        return OpdrachtAanbodRepository.getInstance().studentZietEigenOpdrachten(email);
+    }
+
     public String deadline() {
         return opdrachtAanbod.getOpdracht().getDeadline();
     }

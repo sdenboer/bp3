@@ -5,9 +5,9 @@ public abstract class AbstractRepository {
     public String urlModel;
 
     public AbstractRepository() {
-        this.urlModel = this.getUrlModel();
+        this.urlModel = this.setUrlModel();
     }
 
-    protected abstract String getUrlModel();
+    protected abstract String setUrlModel();
 
 }

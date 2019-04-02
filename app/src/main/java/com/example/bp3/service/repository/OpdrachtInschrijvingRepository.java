@@ -5,7 +5,7 @@ import android.util.Log;
 import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.service.models.OpdrachtInschrijving;
 
-public class OpdrachtInschrijvingRepository {
+public class OpdrachtInschrijvingRepository extends AbstractRepository{
 
     private RestApiHelper restApiHelper;
     private static OpdrachtInschrijvingRepository opdrachtAanbodRepository;
@@ -16,4 +16,8 @@ public class OpdrachtInschrijvingRepository {
                 .post(opdrachtInschrijving, response -> Log.d("POST", "Het object zit in de database!"));
     }
 
+    @Override
+    protected String setUrlModel() {
+        return "team";
+    }
 }

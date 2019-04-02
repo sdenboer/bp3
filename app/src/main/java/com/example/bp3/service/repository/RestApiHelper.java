@@ -11,6 +11,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bp3.service.models.Opdracht;
 import com.example.bp3.service.models.Tag;
+import com.example.bp3.service.models.Vacature;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -178,7 +179,7 @@ public class RestApiHelper {
      */
     private String buildURL() {
         StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append("http://145.49.70.95:8080/bp3webservice/webresources/models.").append(this.urlModel);
+        urlBuilder.append("http://192.168.0.102:8080/bp3webservice/webresources/models.").append(this.urlModel);
         if (parameters != null) {
             parameters.forEach(value -> urlBuilder.append("/").append(value));
         }

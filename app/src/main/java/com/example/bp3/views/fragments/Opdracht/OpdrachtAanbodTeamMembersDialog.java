@@ -17,7 +17,7 @@ import com.example.bp3.service.models.Student;
 import com.example.bp3.service.models.Team;
 import com.example.bp3.views.adapters.TeamMemberAdapter;
 
-public class TeamMembersDialog extends DialogFragment {
+public class OpdrachtAanbodTeamMembersDialog extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
