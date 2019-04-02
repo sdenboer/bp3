@@ -30,7 +30,7 @@
     <string name="projecten_opdrachten">Opdrachten</string>
     <string name="projecten_opdrachten_details">Opdracht Details</string>
     <string name="projecten_challenges">Challenges</string>
-    <string name="projecten_mystuff">My Stuff</string>
+    <string name="projecten_mystuff">Mijn activiteiten</string>
 
     <!-- EVENTS-->
     <string name="events_event">Events</string>
@@ -45,4 +45,5 @@
     <string name="placeholder">placeholder</string>
     <string name="contact">contact</string>
     <string name="teams">Teams</string>
+    <string name="team_toevoegen">team toevoegen</string>
 </resources>

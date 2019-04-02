@@ -1,17 +1,29 @@
 package com.example.bp3.views.adapters;
 
+import android.app.Application;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.graphics.Color;
+import android.media.Image;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.bp3.MainActivity;
 import com.example.bp3.R;
+import com.example.bp3.service.models.Opdracht;
+import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.service.models.Student;
 import com.example.bp3.service.models.Team;
+import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
+import com.example.bp3.viewmodels.TeamViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +31,19 @@ import java.util.List;
 public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.TeamMemberHolder> {
 
     private List<Student> member = new ArrayList<>();
-    private int maxStudents = 0;
-    private int minStudents = 0;
+    private int maxStudents;
+    private int minStudents;
+    private Team team;
+    private DialogFragment dialogFragment;
+    private TeamViewModel tvm;
     private OnItemClickListener listener;
+
+    public TeamMemberAdapter(DialogFragment dialogFragment, Application application, OpdrachtAanbod oa) {
+        this.dialogFragment = dialogFragment;
+        this.tvm = new TeamViewModel(application);
+        this.maxStudents = oa.getOpdracht().getAantStudMax();
+        this.minStudents = oa.getOpdracht().getAantStudMin();
+    }
 
     @NonNull
     @Override
@@ -35,18 +57,26 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
     public void onBindViewHolder(@NonNull TeamMemberHolder teamHolder, int i) {
         try {
             Student s = this.member.get(i);
-            if (s.getEmail().equals("BWarringa@student.kw1c.nl")) {
-                teamHolder.getMemberNaam().setText("verwijder jezelf");
-            } else  {
-                teamHolder.getMemberNaam().setText(s.getNaam());
+            teamHolder.delete.setOnClickListener(e -> {
+                this.team.removeTeamMember(s);
+                if (this.team.getTeamMembers().size() == 0) {
+                    tvm.delete(team);
+                } else {
+                    tvm.update(team);
+                }
+                dialogFragment.dismiss();
+            });
+            if (s.getEmail().equals("CRidderhof@student.kw1c.nl")) {
+                teamHolder.delete.setVisibility(View.VISIBLE);
             }
+            teamHolder.getMemberNaam().setText(s.getNaam());
         } catch (IndexOutOfBoundsException e) {
             if (i < minStudents) {
                 teamHolder.getMemberNaam().setBackgroundColor(Color.RED);
             } else {
                 teamHolder.getMemberNaam().setBackgroundColor(Color.GREEN);
             }
-            teamHolder.getMemberNaam().setText("ADD YOURSELF");
+            teamHolder.getMemberNaam().setText("Schrijf jezelf in");
         }
 
     }
@@ -56,11 +86,9 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
         return maxStudents;
     }
 
-    public void setTeams(List<Student> s, int maxStudents, int minStudents) {
-        this.member = s;
-        this.maxStudents = maxStudents;
-        this.minStudents = minStudents;
-        notifyDataSetChanged();
+    public void setTeams(Team t) {
+        this.member = t.getTeamMembers();
+        this.team = t;
     }
 
     public interface OnItemClickListener {
@@ -73,9 +101,11 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
 
     public class TeamMemberHolder extends RecyclerView.ViewHolder {
         private TextView memberNaam;
+        private ImageButton delete;
 
         public TeamMemberHolder(@NonNull View itemView) {
             super(itemView);
+            delete = itemView.findViewById(R.id.opdrachtaanbod_team_delete);
             memberNaam = itemView.findViewById(R.id.opdrachtaanbod_member_naam);
             itemView.setOnClickListener(v -> {
                 int i = getAdapterPosition();

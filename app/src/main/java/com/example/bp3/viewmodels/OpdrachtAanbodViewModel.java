@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.util.Log;
 
+import com.example.bp3.service.models.Activiteit;
 import com.example.bp3.service.models.Opdracht;
 import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.service.repository.OpdrachtAanbodRepository;
@@ -16,6 +17,14 @@ import java.util.List;
 public class OpdrachtAanbodViewModel extends AndroidViewModel implements Serializable {
 
     public OpdrachtAanbod opdrachtAanbod;
+
+    public String bedrijfsNaam() {
+        return opdrachtAanbod.getBedrijf().getNaam();
+    }
+
+    public String deadline() {
+        return opdrachtAanbod.getOpdracht().getDeadline();
+    }
 
     public OpdrachtAanbodViewModel(Application application) {
         super(application);

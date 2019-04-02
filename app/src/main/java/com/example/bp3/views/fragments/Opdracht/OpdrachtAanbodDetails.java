@@ -17,15 +17,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.bp3.R;
-import com.example.bp3.databinding.CardOpdrachtaanbodTeamnaamBinding;
 import com.example.bp3.databinding.FragmentOpdrachtaanbodDetailsBinding;
 import com.example.bp3.service.models.Opdracht;
 import com.example.bp3.service.models.OpdrachtAanbod;
+import com.example.bp3.service.models.OpdrachtInschrijving;
 import com.example.bp3.service.models.Student;
 import com.example.bp3.service.models.Team;
+import com.example.bp3.service.repository.OpdrachtInschrijvingRepository;
 import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
 import com.example.bp3.viewmodels.TeamViewModel;
 import com.example.bp3.views.adapters.OpdrachtAanbodAdapter;
@@ -39,17 +41,35 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class OpdrachtAanbodDetails extends ViewFragment {
-    private TextView tv;
     FragmentOpdrachtaanbodDetailsBinding coadb;
+    private TextView tvBedrijf, tvDeadline;
+    private Button btnContact, btnToevoegen;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         OpdrachtAanbod oa = (OpdrachtAanbod) getArguments().getSerializable("opdracht");
+//        oa.getOpdracht().getDeadline();
         coadb = DataBindingUtil.inflate(inflater, R.layout.fragment_opdrachtaanbod_details, container, false);
         coadb.setOa(oa);
         View root = coadb.getRoot();
-        coadb.setOa(oa);
+
+        tvBedrijf = root.findViewById(R.id.aanbod_bedrijf);
+        tvBedrijf.setText(oa.getBedrijf().getNaam());
+        tvDeadline = root.findViewById(R.id.aanbod_deadline);
+        tvDeadline.setText(oa.getOpdracht().getPrettyDeadline());
+        btnContact = root.findViewById(R.id.aanbod_contact);
+        btnContact.setOnClickListener(e -> Log.d("Bedrijf", "Go to bedrijf"));
+        btnToevoegen = root.findViewById(R.id.team_add_button);
+        btnToevoegen.setOnClickListener(e -> {
+                    OpdrachtInschrijvingRepository rp = new OpdrachtInschrijvingRepository();
+                    Team t = new Team("test");
+                    Student s = new Student();
+                    rp.create(new Team("test" ));
+                }
+
+                );
+
         RecyclerView recyclerView = root.findViewById(R.id.opdrachtaanbod_teams_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
@@ -62,10 +82,7 @@ public class OpdrachtAanbodDetails extends ViewFragment {
             bundle.putSerializable("team", t);
             DialogFragment fragment = new TeamMembersDialog();
             fragment.setArguments(bundle);
-            fragment.show(getFragmentManager(), "example");
-//            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-//            ft.replace(R.id.fragment_container, fragment);
-//            ft.commit();
+            fragment.show(getFragmentManager(), "");
         });
         recyclerView.setAdapter(adapter);
         return root;

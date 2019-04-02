@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:text="@{oa.bedrijf.email_contactpersoon}"
+                    android:text=""
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:maxLines="1"
                     android:ellipsize="end"
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/aanbod_beschrijving"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                    android:text="@{Integer.toString(oa.opdracht.leerjaar)}"
+                    android:text=""
                     android:id="@+id/aanbod_deadline"
                     />
             </RelativeLayout>
@@ -94,6 +94,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/opdrachtaanbod_title"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/opdrachtaanbod_teams_recycler"
+            android:backgroundTint="#0336FF"
+            android:textColor="#FFFFFF"
+            android:text="@string/team_toevoegen"
+            android:id="@+id/team_add_button"
             />
 
     </RelativeLayout>

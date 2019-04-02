@@ -1,4 +1,4 @@
-package com.example.bp3.views.fragments;
+package com.example.bp3.views.fragments.Opdracht;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.example.bp3.R;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
-public class MyStuffView extends ViewFragment {
+public class MijnActiviteiten extends ViewFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

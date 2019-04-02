@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
+import com.example.bp3.service.models.Student;
 import com.example.bp3.service.models.Team;
 import com.example.bp3.service.repository.TeamRepository;
 
@@ -36,4 +37,5 @@ public class TeamViewModel extends AndroidViewModel {
     public void delete(Team team) {
         TeamRepository.getInstance().delete(team);
     }
+
 }

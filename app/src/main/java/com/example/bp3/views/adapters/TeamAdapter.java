@@ -83,10 +83,6 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder> {
         public TeamHolder(@NonNull View itemView) {
             super(itemView);
             teamNaam = itemView.findViewById(R.id.opdrachtaanbod_team_naam);
-            Log.d("asdf", String.valueOf(teamNaam));
-            Log.d("asdf", String.valueOf(teamNaam));
-            Log.d("asdf", String.valueOf(teamNaam));
-            Log.d("asdf", String.valueOf(teamNaam));
             itemView.setOnClickListener(v -> {
                 int i = getAdapterPosition();
                 if (listener != null && i != RecyclerView.NO_POSITION) {
