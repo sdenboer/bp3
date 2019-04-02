@@ -1,33 +1,22 @@
 package com.example.bp3;
 
-import android.arch.lifecycle.ViewModelProviders;
-
 import android.databinding.DataBindingUtil;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.bp3.databinding.ActivityMainBinding;
-import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.service.repository.RestApiHelper;
-import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
-import com.example.bp3.views.adapters.OpdrachtAanbodAdapter;
 import com.example.bp3.views.fragments.ChallengeView;
-import com.example.bp3.views.fragments.Event;
-import com.example.bp3.views.fragments.Event_Aanvragen;
+import com.example.bp3.views.fragments.Event.Event;
+import com.example.bp3.views.fragments.Event.Event_Aanvragen;
 import com.example.bp3.views.fragments.MyStuffView;
 import com.example.bp3.views.fragments.Opdracht.OpdrachtLesvak;
 

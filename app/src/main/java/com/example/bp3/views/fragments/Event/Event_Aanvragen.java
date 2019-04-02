@@ -1,4 +1,4 @@
-package com.example.bp3.views.fragments;
+package com.example.bp3.views.fragments.Event;
 
 
 import android.os.Bundle;
