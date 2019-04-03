@@ -21,8 +21,6 @@ import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
 public class Event extends ViewFragment {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

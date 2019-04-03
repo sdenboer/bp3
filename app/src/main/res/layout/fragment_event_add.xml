@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Naam" />
+            android:hint="Naam" />
 
         <EditText
             android:id="@+id/editTextEventLocatie"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Locatie" />
+            android:hint="Locatie" />
 
         <EditText
             android:id="@+id/editTextEventDatumtijd"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Datum en tijd" />
+            android:hint="Datum en tijd" />
 
         <EditText
             android:id="@+id/editTextEventAantalp"
@@ -66,7 +66,20 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="numberSigned"
-            android:text="Max aantal personen" />
+            android:hint="Max aantal personen" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Soort evenement:" />
+
+        <Spinner
+            android:id="@+id/spinnerSoort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
 
         <EditText
             android:id="@+id/editTextEventOmschrijving"
@@ -74,7 +87,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Omschrijving" />
+            android:hint="Omschrijving" />
 
     </LinearLayout>
 
