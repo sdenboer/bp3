@@ -3,17 +3,14 @@ package com.example.bp3.viewmodels;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.widget.Toast;
-
 import com.example.bp3.service.models.AanbodEvent;
-import com.example.bp3.service.models.EventSoort;
-import com.example.bp3.service.models.Inschrijving;
-import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.service.repository.EventRepository;
-import com.example.bp3.service.repository.OpdrachtAanbodRepository;
-
 import java.io.Serializable;
 import java.util.List;
+
+/**
+ * @author Koen Franken
+ */
 
 public class AanbodEventViewModel extends AndroidViewModel implements Serializable {
 

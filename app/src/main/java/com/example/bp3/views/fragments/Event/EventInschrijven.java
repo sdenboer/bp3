@@ -2,10 +2,7 @@ package com.example.bp3.views.fragments.Event;
 
 import android.app.AlertDialog;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.bp3.MainActivity;
 import com.example.bp3.R;
 import com.example.bp3.service.models.AanbodEvent;
 import com.example.bp3.service.models.Bedrijf;
@@ -66,7 +62,6 @@ public class EventInschrijven extends ViewFragment {
                 dlgAlert.setCancelable(true);
                 dlgAlert.create().show();
             }
-
         });
         return view;
     }
