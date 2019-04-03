@@ -14,7 +14,7 @@ import com.example.bp3.views.adapters.OpdrachtAanbodAdapter;
 import java.util.List;
 
 public class AanbodEventHolder extends RecyclerView.ViewHolder {
-    private TextView EventNummer;
+    private TextView EventSoort;
     private TextView EventNaam;
     private TextView EventDatum;
 
@@ -22,8 +22,8 @@ public class AanbodEventHolder extends RecyclerView.ViewHolder {
 
     public AanbodEventHolder(@NonNull View itemView, EventRecyclerViewAdapter.OnItemClickListener listener, List<AanbodEvent> aanbodEvents) {
         super(itemView);
-        EventNummer = itemView.findViewById(R.id.textViewEventNummer);
         EventNaam = itemView.findViewById(R.id.textViewEventNaam);
+        EventSoort = itemView.findViewById(R.id.textViewEventSoort);
         EventDatum = itemView.findViewById(R.id.textViewEventDatum);
         itemView.setOnClickListener(v -> {
             int i = getAdapterPosition();
@@ -33,8 +33,8 @@ public class AanbodEventHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public TextView getEventNummer() {
-        return EventNummer;
+    public TextView getEventSoort() {
+        return EventSoort;
     }
 
     public TextView getEventNaam() {

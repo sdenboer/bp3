@@ -31,9 +31,10 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<AanbodEventHo
     @Override
     public void onBindViewHolder(@NonNull AanbodEventHolder aanbodEventHolder, int i) {
         AanbodEvent event = this.aanbodEvents.get(i);
-        aanbodEventHolder.getEventNummer().setText(Integer.toString(event.getEventnummer()));
         aanbodEventHolder.getEventNaam().setText(event.getNaam());
+        aanbodEventHolder.getEventSoort().setText(event.getSoort().getSoort());
         aanbodEventHolder.getEventDatum().setText(event.getDatumentijd());
+
     }
 
     @Override
