@@ -38,6 +38,8 @@
     <string name="event_page">Evenement</string>
     <string name="event_add">Evenement toevoegen</string>
     <string name="event_addEvent">Vul de gegeven in: </string>
+    <string name="event_dropdownsoort">Kies een soort: </string>
+    <string name="event_inschrijven">Inschrijven voor evenement</string>
     <string name="event_terugbtn">Terug</string>
     <string name="event_inschrijfbtn">Inschrijven</string>
     <string name="eventpage_naam">Naam: </string>

@@ -13,6 +13,9 @@ import com.example.bp3.R;
 import com.example.bp3.service.models.AanbodEvent;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
+/**
+ * @author Koen Franken
+ */
 
 public class EventPage extends ViewFragment{
     AanbodEvent event;
@@ -44,7 +47,15 @@ public class EventPage extends ViewFragment{
         txtOmschrijf.setText("Omschrijving: " +  event.getOmschrijving());
 
         btnInschrijf.setOnClickListener(v -> {
-            //code
+            FragmentTransaction t = this.getFragmentManager().beginTransaction();
+            Fragment frag = new EventInschrijven();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("eventinschrijf", event);
+            frag.setArguments(bundle);
+            t.addToBackStack(null);
+            t.replace(R.id.fragment_container, frag);
+            t.commit();
+
             System.out.println(event.getNaam());
         });
         return view;

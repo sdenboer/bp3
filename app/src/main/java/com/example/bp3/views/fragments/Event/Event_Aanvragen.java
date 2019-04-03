@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import com.example.bp3.R;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
+/**
+ * @author Koen Franken
+ */
+
 public class Event_Aanvragen extends ViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

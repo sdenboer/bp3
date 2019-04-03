@@ -6,18 +6,21 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Koen Franken
+ */
+
+
 @Getter
 @Setter
 public class AanbodEvent implements Serializable {
-    ArrayList<AanbodEvent> events;
 
     private String naam, locatie, omschrijving, datumentijd;
-    private int eventnummer, aantalPersonen;
+    private int  eventnummer, aantalPersonen;
     @SerializedName("bedrijfBedrijfsemail")
     private Bedrijf bedrijf;
     @SerializedName("docentDocentEmail")
@@ -25,14 +28,17 @@ public class AanbodEvent implements Serializable {
     @SerializedName("soortEventsoort")
     private EventSoort soort;
 
-    public AanbodEvent(int eventnummer, String naam, String locatie, String datumentijd, int aantalPersonen, String omschrijving, EventSoort soort){
-        this.eventnummer = eventnummer;
+    public AanbodEvent(String naam, String locatie, String datumentijd, int aantalPersonen, String omschrijving, EventSoort soort){
         this.naam = naam;
         this.locatie = locatie;
         this.datumentijd = datumentijd;
         this.aantalPersonen = aantalPersonen;
         this.omschrijving = omschrijving;
         this.soort = soort;
+    }
+
+    public int geteventnummer(){
+        return eventnummer;
     }
 
     public Bedrijf getBedrijf(){
@@ -48,23 +54,6 @@ public class AanbodEvent implements Serializable {
         this.docent = docent;
     }
 
-    public ArrayList<AanbodEvent> getallEvents(){
-        return events;
-    }
-
-    public void setallEvents(AanbodEvent event){
-        if(events == null){
-            System.out.println("Nulll");
-            events = new ArrayList<>();
-            events.add(event);
-        } else{
-            System.out.println(event.getNaam());
-        }
-
-    }
-    public void setArrylist(){
-
-    }
 
     public String getPrettyDeadline() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy HH:mm");

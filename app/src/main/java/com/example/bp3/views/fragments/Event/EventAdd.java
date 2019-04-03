@@ -1,5 +1,6 @@
 package com.example.bp3.views.fragments.Event;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -8,13 +9,18 @@ import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.example.bp3.R;
 import com.example.bp3.service.models.AanbodEvent;
+import com.example.bp3.service.models.Bedrijf;
 import com.example.bp3.service.models.EventSoort;
 import com.example.bp3.service.repository.RestApiHelper;
+import com.example.bp3.viewmodels.AanbodEventViewModel;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
 import java.util.ArrayList;
@@ -28,6 +34,7 @@ import java.util.List;
 public class EventAdd extends ViewFragment {
     private EditText txtnaam, txtlocatie, txtdatumentijd, txtaantalp, txtomschrijving, txtsoort;
     private List<String> items = new ArrayList<>();
+    private String keuze = "Workshop";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +56,7 @@ public class EventAdd extends ViewFragment {
         });
 
         Spinner dropdownSoort = (Spinner) view.findViewById(R.id.spinnerSoort);
-        ArrayAdapter<String>adapter = new ArrayAdapter<String>(view.getContext(),android.R.layout.simple_spinner_item,items);
+        ArrayAdapter<String>adapter = new ArrayAdapter<String>(inflater.getContext(),android.R.layout.simple_spinner_item,items);
         dropdownSoort.setAdapter(adapter);
 
         FloatingActionButton btnclose = (FloatingActionButton) view.findViewById(R.id.button_CloseEvent);
@@ -64,29 +71,29 @@ public class EventAdd extends ViewFragment {
         });
         btnsave.setOnClickListener(v -> {
             //insert event
+            try {
+                Editable txt = (Editable) txtnaam.getText();
+                String naam = txt.toString();
+                Editable txt2 = (Editable) txtlocatie.getText();
+                String locatie = txt2.toString();
+                Editable txt3 = (Editable) txtdatumentijd.getText();
+                String date = txt3.toString();
+                Editable txt4 = (Editable) txtaantalp.getText();
+                int personen = Integer.parseInt(txt4.toString());
+                Editable txt5 = (Editable) txtomschrijving.getText();
+                String omsch = txt5.toString();
 
-            Editable txt=(Editable)txtnaam.getText();
-            String naam = txt.toString();
-            Editable txt2=(Editable)txtlocatie.getText();
-            String locatie = txt2.toString();
-            Editable txt3=(Editable)txtdatumentijd.getText();
-            String date = txt3.toString();
-            Editable txt4=(Editable)txtaantalp.getText();
-            int personen = Integer.parseInt(txt4.toString());
-            Editable txt5=(Editable)txtomschrijving.getText();
-            String omsch = txt5.toString();
+                EventSoort soort = new EventSoort(keuze);
+                Bedrijf be = new Bedrijf("Bedrijf@bedrijf.nl","ww","dd","06","ed","06");
 
-            String x = "soort";
-            EventSoort soort = new EventSoort(x);
-            AanbodEvent aanbodEvent = new AanbodEvent(0,naam ,locatie,date,personen,omsch,soort);
+                AanbodEvent aanbodEvent = new AanbodEvent(naam, locatie, date, personen, omsch, soort);
+                aanbodEvent.setBedrijf(be);
+                AanbodEventViewModel vmEvent = ViewModelProviders.of(this).get(AanbodEventViewModel.class);
+                vmEvent.create(aanbodEvent);
 
-
-            System.out.println(aanbodEvent.getNaam());
-            System.out.println(aanbodEvent.getLocatie());
-            System.out.println(aanbodEvent.getDatumentijd());
-            System.out.println(aanbodEvent.getAantalPersonen());
-            System.out.println(aanbodEvent.getOmschrijving());
-            System.out.println(aanbodEvent.getSoort());
+            }catch (Exception e){
+                System.out.println(e);
+            }
 
         });
         return view;
@@ -95,9 +102,5 @@ public class EventAdd extends ViewFragment {
     @Override
     public int title() {
         return R.string.event_add;
-    }
-
-    public void getSoorten(){
-
     }
 }

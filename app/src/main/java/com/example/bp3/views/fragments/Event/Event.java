@@ -43,7 +43,6 @@ public class Event extends ViewFragment {
             t.addToBackStack(null);
             t.replace(R.id.fragment_container, frag);
             t.commit();
-
         });
 
         FloatingActionButton btnadd = (FloatingActionButton) view.findViewById(R.id.button_addEvent);
