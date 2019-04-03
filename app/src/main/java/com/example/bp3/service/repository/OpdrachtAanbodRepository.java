@@ -4,9 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
 
-import com.example.bp3.service.models.Opdracht;
 import com.example.bp3.service.models.OpdrachtAanbod;
-import com.example.bp3.service.models.OpdrachtInschrijving;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +18,7 @@ public class OpdrachtAanbodRepository extends AbstractRepository{
     public void create(OpdrachtAanbod opdrachtAanbod) {
         RestApiHelper.prepareQuery(urlModel)
                 .build()
-                .post(opdrachtAanbod, response -> Log.d("POST", "Het object zit in de database!"));
+                .post(opdrachtAanbod, response -> Log.d("POST", "Het object zit in de database!"), error -> Log.e("Webservice Error", error.toString()));
     }
 
     public LiveData<List<OpdrachtAanbod>> studentZietOpdrachtenLeskvak(String instelling, String opleiding, Integer leerjaar) {
@@ -31,7 +29,7 @@ public class OpdrachtAanbodRepository extends AbstractRepository{
                 .build();
         restApiHelper.getArray(jsonArray -> {
             data.setValue(Arrays.asList((OpdrachtAanbod[]) restApiHelper.toPOJO(jsonArray)));
-        });
+        }, error -> Log.e("Webservice Error", error.toString()));
         return data;
     }
 
@@ -43,7 +41,7 @@ public class OpdrachtAanbodRepository extends AbstractRepository{
                 .build();
         restApiHelper.getArray(jsonArray -> {
             data.setValue(Arrays.asList((OpdrachtAanbod[]) restApiHelper.toPOJO(jsonArray)));
-        });
+        }, error -> Log.e("Webservice Error", error.toString()));
         return data;
     }
 
@@ -64,7 +62,7 @@ public class OpdrachtAanbodRepository extends AbstractRepository{
                 .klasse(OpdrachtAanbod[].class)
                 .parameters(Arrays.asList("vraag", id))
                 .build();
-        restApiHelper.getArray(jsonArray -> data.setValue(Arrays.asList((OpdrachtAanbod[]) restApiHelper.toPOJO(jsonArray))));
+        restApiHelper.getArray(jsonArray -> data.setValue(Arrays.asList((OpdrachtAanbod[]) restApiHelper.toPOJO(jsonArray))), error -> Log.e("Webservice Error", error.toString()));
         return data;
     }
 
@@ -74,14 +72,14 @@ public class OpdrachtAanbodRepository extends AbstractRepository{
         RestApiHelper.prepareQuery(urlModel)
                 .parameters(Arrays.asList(opdrachtAanbod.getId())) //<- In dit geval is "mbo" de primary key van het object dat gewijzigd moet worden
                 .build()
-                .update(opdrachtAanbod, callback -> Log.d("UPDATE", "Het object is geupdate!"));
+                .update(opdrachtAanbod, callback -> Log.d("UPDATE", "Het object is geupdate!"), error -> Log.e("Webservice Error", error.toString()));
     }
 
     public void delete(OpdrachtAanbod opdrachtAanbod) {
         RestApiHelper.prepareQuery(urlModel)
                 .parameters(Arrays.asList(opdrachtAanbod.getId()))
                 .build()
-                .delete(callback -> Log.d("DELETE", "Het object is verwijderd!"));
+                .delete(callback -> Log.d("DELETE", "Het object is verwijderd!"), error -> Log.e("Webservice Error", error.toString()));
     }
 
 

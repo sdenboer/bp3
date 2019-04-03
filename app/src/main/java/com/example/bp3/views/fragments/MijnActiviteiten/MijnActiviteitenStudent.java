@@ -17,11 +17,11 @@ import com.example.bp3.views.adapters.OpdrachtAanbodAdapter;
 import com.example.bp3.views.fragments.Opdracht.OpdrachtAanbodDetails;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
-public class MijnActiviteiten extends ViewFragment {
+public class MijnActiviteitenStudent extends ViewFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View root = inflater.inflate(R.layout.fragment_mijn_activiteiten, container, false);
+        final View root = inflater.inflate(R.layout.fragment_mijn_activiteiten_student, container, false);
         setRecyclerView(root);
         return root;
     }

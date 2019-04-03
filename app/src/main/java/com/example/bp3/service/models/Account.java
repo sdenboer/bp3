@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class Account {
-    @SerializedName(value="studentEmail", alternate = {"bedrijfsemail", "docentEmail"})
+    @SerializedName(value="docentEmail")
     protected String email;
     @SerializedName("wachtwoord")
     protected String wachtwoord;

@@ -5,6 +5,7 @@ import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -86,14 +87,22 @@ public class RestApiHelper {
         void onSuccess(String response);
     }
 
+    /**
+     * Deze interface wordt aangeroepen als er een error heeft plaatsgevonden
+     */
+    public interface WebServiceCallbackFail {
+        void onError(VolleyError volleyError);
+    }
+
     //HTTPREQUESTS
     /**
      * Deze methode bouwt de async functie om een JsonArray terug te geven.
-     * @param callback is de interface
+     * @param callback is de interface onSucess
+     * @param error is de interface voor onError
      * @see WebServiceCallBackArray
      */
-    public void getArray(final WebServiceCallBackArray callback) { //function to be run
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, buildURL(), new JSONArray(), callback::onSuccess, onError) {
+    public void getArray(final WebServiceCallBackArray callback, final WebServiceCallbackFail error) { //function to be run
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, buildURL(), new JSONArray(), callback::onSuccess, error::onError) {
             @Override
             public Map<String, String> getHeaders() {
                 return jsonHeaders();
@@ -103,11 +112,12 @@ public class RestApiHelper {
     }
     /**
      * Deze methode bouwt de async functie om een jsonObject terug te geven.
-     * @param callback is de interface
+     * @param callback is de interface onSucess
+     * @param error is de interface voor onError
      * @see WebServiceCallBackObject
      */
-    public void getObject(final WebServiceCallBackObject callback) {
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, buildURL(), new JSONObject(), callback::onSuccess, onError) {
+    public void getObject(final WebServiceCallBackObject callback, final WebServiceCallbackFail error) {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, buildURL(), new JSONObject(), callback::onSuccess, error::onError) {
             @Override
             public Map<String, String> getHeaders() {
                 return jsonHeaders();
@@ -119,10 +129,12 @@ public class RestApiHelper {
      * Deze methode maakt een POST request naar de webservice
      * @param object is het object dat aan de webservice wordt meegegeven(zoals een Student)
      * @param callback is wat er gebeurd nadat de functie is uitgevoerd.
+     * @param error is de interface voor onError
      */
-    public void post(Object object, final WebServiceCallback callback) {
+    public void post(Object object, final WebServiceCallback callback, final WebServiceCallbackFail error) {
         String body = new Gson().toJson(object);
-        StringRequest request = new StringRequest(Request.Method.POST, buildURL(), callback::onSuccess, onError) {
+        Log.d("Test", body);
+        StringRequest request = new StringRequest(Request.Method.POST, buildURL(), callback::onSuccess, error::onError) {
             @Override
             public String getBodyContentType() {
                 return "application/json; charset=utf-8";
@@ -138,10 +150,11 @@ public class RestApiHelper {
      * Deze methode maakt een PUT request naar de webservice
      * @param object object is het object dat aan de webservice wordt meegegeven(zoals een Student)
      * @param callback is wat er gebeurd nadat de functie is uitgevoerd.
+     * @param error is de interface voor onError
      */
-    public void update(Object object, final WebServiceCallback callback){
+    public void update(Object object, final WebServiceCallback callback, final WebServiceCallbackFail error){
         String body = new Gson().toJson(object);
-        StringRequest request = new StringRequest(Request.Method.PUT, buildURL(), callback::onSuccess, onError) {
+        StringRequest request = new StringRequest(Request.Method.PUT, buildURL(), callback::onSuccess, error::onError) {
             @Override
             public String getBodyContentType() {
                 return "application/json; charset=utf-8";
@@ -156,9 +169,10 @@ public class RestApiHelper {
     /**
      * Deze methode maakt een DELETE request naar de webservice
      * @param callback is wat er gebeurd nadat de functie is uitgevoerd
+     * @param error is de interface voor onError
      */
-    public void delete(final  WebServiceCallback callback) {
-        StringRequest request = new StringRequest(Request.Method.DELETE, buildURL(), callback::onSuccess, onError);
+    public void delete(final  WebServiceCallback callback, final WebServiceCallbackFail error) {
+        StringRequest request = new StringRequest(Request.Method.DELETE, buildURL(), callback::onSuccess, error::onError);
         RestApiHelper.requestQueue.add(request);
     }
 
@@ -196,6 +210,7 @@ public class RestApiHelper {
     }
     /**
      * Maakt het makkelijker om simpel te debuggen zonder herhalende code
+     * verander fail::onerror door onerror en verwijder de CallbackFail
      */
     private final Response.ErrorListener onError = error -> Log.e("Webservice Error", error.toString());
 
@@ -220,7 +235,7 @@ public class RestApiHelper {
                 //      voeg hieronder code toe om iets met de objecten te doen. Bijvoorbeeld:
                 //
                 //      tags.forEach(tag -> Log.d("Array with tags", tag.getTag()));
-            });
+            }, error -> Log.e("Kutzooi", error.toString())); //Deze functie wordt uitgevoerd als er iets fout is.
 
             //GET request voor een enkel object (1 resultaat)
             RestApiHelper opdrachtJSON = RestApiHelper
@@ -234,7 +249,7 @@ public class RestApiHelper {
                 //      voeg hieronder code toe om iets met het object te doen. Bijvoorbeeld:
                 //
                 //      Log.d("Opdracht", opdracht.getDocent().getNaam());
-            });
+            }, error -> Log.e("Webservice Error", error.toString()));
 
             Tag tag = new Tag("test"); //<- Dit is zinloos natuurlijk, maar maakt de uitleg van de PUT request makkelijker
             tag.setTag("de nieuwe tag");
@@ -246,7 +261,7 @@ public class RestApiHelper {
                         //De code hieronder wordt uitgevoerd nadat de request is uitgevoerd. Bijvoorbeeld
                         //
                         //      Log.d("UPDATE", "Het object is geupdate!");
-                    });
+                    }, error -> Log.e("Webservice Error", error.toString()));
 
             //DELETE request voor een object
             RestApiHelper.prepareQuery("tag")
@@ -257,7 +272,7 @@ public class RestApiHelper {
                         //
                         //      Log.d("DELETE", "Het object is verwijderd!");
 
-                    });
+                    }, error -> Log.e("Webservice Error", error.toString()));
 
 //        POST request voor een object
             Tag newTag = new Tag("te");
@@ -267,7 +282,7 @@ public class RestApiHelper {
                         //De code hieronder wordt uitgevoerd nadat de request is uitgevoerd. Bijvoorbeeld
                         //
                         //      Log.d("POST", "Het object zit in de database!");
-                    });
+                    }, error -> Log.e("Webservice Error", error.toString()));
         }
 
     }

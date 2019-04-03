@@ -1,28 +1,20 @@
 package com.example.bp3.views.adapters;
 
 import android.app.Application;
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.graphics.Color;
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.bp3.MainActivity;
 import com.example.bp3.R;
-import com.example.bp3.service.models.Opdracht;
 import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.service.models.Student;
 import com.example.bp3.service.models.Team;
-import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
 import com.example.bp3.viewmodels.TeamViewModel;
 
 import java.util.ArrayList;

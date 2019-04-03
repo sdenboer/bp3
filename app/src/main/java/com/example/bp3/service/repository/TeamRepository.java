@@ -21,13 +21,13 @@ public class TeamRepository extends AbstractRepository{
     public void create(Team team) {
         RestApiHelper.prepareQuery(urlModel)
                 .build()
-                .post(team, response -> Log.d("POST", "Het object zit in de database!"));
+                .post(team, response -> Log.d("POST", "Het object zit in de database!"), error -> Log.e("Webservice Error", error.toString()));
     }
 
     public LiveData<List<Team>> beschikbareTeams(int opdrachtId) {
         final MutableLiveData<List<Team>> data = new MutableLiveData<>();
         restApiHelper = RestApiHelper.prepareQuery(urlModel).klasse(Team[].class).parameters(Arrays.asList("find", opdrachtId)).build();
-        restApiHelper.getArray(jsonArray -> data.setValue(Arrays.asList((Team[]) restApiHelper.toPOJO(jsonArray))));
+        restApiHelper.getArray(jsonArray -> data.setValue(Arrays.asList((Team[]) restApiHelper.toPOJO(jsonArray))), error -> Log.e("Webservice Error", error.toString()));
         return data;
     }
 
@@ -47,14 +47,14 @@ public class TeamRepository extends AbstractRepository{
         RestApiHelper.prepareQuery(urlModel)
                 .parameters(Arrays.asList(team.getTeamNaam()))
                 .build()
-                .update(team, callback -> Log.d("UPDATE", "Het object is geupdate!"));
+                .update(team, callback -> Log.d("UPDATE", "Het object is geupdate!"), error -> Log.e("Webservice Error", error.toString()));
     }
 
     public void delete(Team team) {
         RestApiHelper.prepareQuery(urlModel)
                 .parameters(Arrays.asList(team.getTeamNaam()))
                 .build()
-                .delete(callback -> Log.d("DELETE", "Het object is verwijderd!"));
+                .delete(callback -> Log.d("DELETE", "Het object is verwijderd!"), error -> Log.e("Webservice Error", error.toString()));
     }
 
     public synchronized static TeamRepository getInstance() {

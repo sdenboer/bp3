@@ -11,7 +11,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.bp3.databinding.ActivityMainBinding;
@@ -19,12 +18,10 @@ import com.example.bp3.service.repository.RestApiHelper;
 import com.example.bp3.views.fragments.Challenge.ChallengeView;
 import com.example.bp3.views.fragments.Event;
 import com.example.bp3.views.fragments.Event_Aanvragen;
-import com.example.bp3.views.fragments.MijnActiviteiten.MijnActiviteiten;
+import com.example.bp3.views.fragments.MijnActiviteiten.MijnActiviteitenDocent;
 import com.example.bp3.views.fragments.Opdracht.Docent.IDataSendDeadline;
 import com.example.bp3.views.fragments.Opdracht.Docent.OpdrachtVraagToevoegen;
-import com.example.bp3.views.fragments.Opdracht.Student.OpdrachtAanbodLesvak;
 
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -91,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new ChallengeView();
                 break;
             case R.id.navigation_mystuff:
-                fragment = new MijnActiviteiten();
+                fragment = new MijnActiviteitenDocent();
                 break;
         }
         if (fragment != null) {

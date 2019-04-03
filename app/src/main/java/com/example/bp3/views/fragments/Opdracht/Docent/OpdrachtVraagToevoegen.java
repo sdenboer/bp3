@@ -52,27 +52,18 @@ public class OpdrachtVraagToevoegen extends ViewFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d("TEst", "test");
         Lesvak info = new Lesvak("informatica");
         Lesvak program = new Lesvak("program");
         ArrayList<Lesvak> lesvaks = new ArrayList<>();
         lesvaks.add(info);
         lesvaks.add(program);
         Opleiding opleiding = new Opleiding("hbo", "Avans", "Ad Informatica", lesvaks);
-        mDocent = new Docent("docent@avans.nl", "1234", "john", "045214213", opleiding, lesvaks);
+        mDocent = new Docent("BKatwijk@avans.nl", "wachtwoord", "Bregtje van Katwijk", "0699999999", opleiding, lesvaks);
         final View root = inflater.inflate(R.layout.fragment_opdrachtvraag_add, container, false);
         mLesvak = root.findViewById(R.id.opdrachtvraag_add_lesvak);
         getLayoutElements(root);
         setLesvakkenDropdown(root);
-        mToevoegen.setOnClickListener(event -> {
-            if (validateInput()) {
-                Toast toast=Toast.makeText(getActivity(),"Gelukt",Toast.LENGTH_SHORT);
-                toast.show();
-            } else {
-                Toast toast=Toast.makeText(getActivity(),"Niet gelukt!",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
+        mToevoegen.setOnClickListener(event -> validateInput());
 
         return root;
     }
@@ -90,9 +81,9 @@ public class OpdrachtVraagToevoegen extends ViewFragment {
         mStudMin = root.findViewById(R.id.opdrachtvraag_add_min);
         mStudMax = root.findViewById(R.id.opdrachtvraag_add_max);
         mEisen = root.findViewById(R.id.opdrachtvraag_add_eisen);
-        mDeadline = root.findViewById(R.id.opdrachtvraag_add_deadline) ;
         mToevoegen = root.findViewById(R.id.opdrachtvraag_toevoegen);
         mLeerjaar = root.findViewById(R.id.opdrachtvraag_add_leerjaar);
+        mDisplayedDeadline = root.findViewById(R.id.opdrachtvraag_deadline);
         mDeadline.setOnClickListener(event -> new DateAndTimePicker().show(getFragmentManager(), ""));
     }
 
@@ -129,7 +120,7 @@ public class OpdrachtVraagToevoegen extends ViewFragment {
         this.mDisplayedDeadline.setText(formatter.format(time));
     }
 
-    public boolean validateInput() {
+    public void validateInput() {
         Map<String, String> data = new HashMap<>();
         data.put("opdrachtnaam", mOpdrachtnaam.getText().toString());
         data.put("minStud", mStudMin.getText().toString());
@@ -139,14 +130,16 @@ public class OpdrachtVraagToevoegen extends ViewFragment {
         data.put("lesvak", mLesvak.getSelectedItem().toString());
         data.put("deadline", mDisplayedDeadline.getText().toString());
         if (data.values().stream().anyMatch(String::isEmpty)) {
-            return false;
+            Toast toast=Toast.makeText(getActivity(),"Vul alle velden in!",Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            sendToViewModel(data);
         }
-        sendToViewModel(data);
-        return true;
+
     }
 
     public void sendToViewModel(Map<String, String> data) {
         OpdrachtViewModel vm = ViewModelProviders.of(this).get(OpdrachtViewModel.class);
-        vm.prepareCreate(data, mDocent);
+        vm.prepareCreate(data, mDocent, "Bedankt, de opdracht is nu beschikbaar!", "Er is iets foutgegaan");
     }
 }

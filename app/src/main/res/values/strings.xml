@@ -48,6 +48,9 @@
     <string name="team_toevoegen">team toevoegen</string>
     <string name="mijn_activiteiten">Mijn activiteiten</string>
     <string name="mijn_challenges">Mijn challenges</string>
+    <string name="mijn_opdrachten">Mijn Opdrachten</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
 
 
     <string-array name="leerjaar_values">

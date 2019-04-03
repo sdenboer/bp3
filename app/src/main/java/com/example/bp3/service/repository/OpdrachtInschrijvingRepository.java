@@ -13,7 +13,7 @@ public class OpdrachtInschrijvingRepository extends AbstractRepository{
     public void create(OpdrachtInschrijving opdrachtInschrijving) {
         RestApiHelper.prepareQuery("team")
                 .build()
-                .post(opdrachtInschrijving, response -> Log.d("POST", "Het object zit in de database!"));
+                .post(opdrachtInschrijving, response -> Log.d("POST", "Het object zit in de database!"), error -> Log.e("Webservice Error", error.toString()));
     }
 
     @Override

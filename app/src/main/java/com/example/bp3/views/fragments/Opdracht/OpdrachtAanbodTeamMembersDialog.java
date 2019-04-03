@@ -1,6 +1,5 @@
 package com.example.bp3.views.fragments.Opdracht;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,11 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import com.example.bp3.R;
 import com.example.bp3.service.models.OpdrachtAanbod;
-import com.example.bp3.service.models.Student;
 import com.example.bp3.service.models.Team;
 import com.example.bp3.views.adapters.TeamMemberAdapter;
 

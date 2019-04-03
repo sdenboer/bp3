@@ -2,6 +2,7 @@ package com.example.bp3.service.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +17,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Activiteit {
+public class Activiteit implements Serializable {
 
     protected String deadline;
     @SerializedName("aantStudMin")
