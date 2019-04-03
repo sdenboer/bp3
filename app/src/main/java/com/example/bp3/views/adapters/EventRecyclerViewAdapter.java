@@ -11,6 +11,7 @@ import com.example.bp3.R;
 import com.example.bp3.service.models.AanbodEvent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Koen Franken
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecyclerViewAdapter.DataObjectHolder> {
     private static String LOG_TAG = "EventRecyclerViewAdapter";
-    private ArrayList<AanbodEvent> mDataset;
+    private List<AanbodEvent> mDataset;
     private static MyClickListener myClickListener;
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder
@@ -47,7 +48,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         this.myClickListener = myClickListener;
     }
 
-    public EventRecyclerViewAdapter(ArrayList<AanbodEvent> myDataset) {
+    public EventRecyclerViewAdapter(List<AanbodEvent> myDataset) {
         mDataset = myDataset;
     }
 

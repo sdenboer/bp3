@@ -34,7 +34,12 @@ public class EventPage extends ViewFragment{
         TextView txtAantalp = (TextView) view.findViewById(R.id.textAantalpevent);
         txtAantalp.setText("Maximaal aantal personen: " +  event.getAantalPersonen());
         TextView txtContact = (TextView) view.findViewById(R.id.textContactPevent);
-        txtContact.setText("Contactpersoon: " +  event.getAccount().getEmail());
+        try {
+            txtContact.setText("Contactpersoon: " + event.getBedrijf().getEmail());
+        }catch (Exception e){System.out.println("Geen bedrijf");}
+        try {
+            txtContact.setText("Contactpersoon: " + event.getDocent().getEmail());
+        }catch (Exception e){System.out.println("Geen docent");}
         TextView txtOmschrijf = (TextView) view.findViewById(R.id.textOmschrijvingevent);
         txtOmschrijf.setText("Omschrijving: " +  event.getOmschrijving());
 

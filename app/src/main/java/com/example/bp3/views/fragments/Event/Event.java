@@ -1,8 +1,7 @@
 package com.example.bp3.views.fragments.Event;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,20 +9,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.bp3.R;
 import com.example.bp3.service.models.Bedrijf;
 import com.example.bp3.service.models.EventSoort;
 import com.example.bp3.service.repository.EventRepository;
+import com.example.bp3.service.repository.RestApiHelper;
 import com.example.bp3.views.adapters.EventRecyclerViewAdapter;
 import com.example.bp3.service.models.AanbodEvent;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Arrays;
 import java.util.List;
 
 public class Event extends ViewFragment{
@@ -31,6 +27,7 @@ public class Event extends ViewFragment{
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList results = new ArrayList<AanbodEvent>();
+    private List data;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,10 +38,21 @@ public class Event extends ViewFragment{
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(inflater.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new EventRecyclerViewAdapter(getDataSet());
-        mRecyclerView.setAdapter(mAdapter);
+        results.clear();
+        getDataSet();
+        loop();
+
 
         return view;
+    }
+
+    public void loop(){
+        if(data != null){
+            mAdapter = new EventRecyclerViewAdapter(data);
+            mRecyclerView.setAdapter(mAdapter);
+        } else{
+            loop();
+        }
     }
 
     @Override
@@ -56,12 +64,17 @@ public class Event extends ViewFragment{
     @Override
     public void onResume() {
         super.onResume();
+        System.out.println("Test");
+        EventRepository ep = new EventRepository();
+        ep.aanbodevent();
+
+
         ((EventRecyclerViewAdapter) mAdapter).setOnItemClickListener((position, v)
                 -> eventPage(position,v));
     }
 
     public void eventPage(int position, View v){
-        AanbodEvent aanbodEvent = (AanbodEvent)results.get(position);
+        AanbodEvent aanbodEvent = (AanbodEvent)data.get(position);
 
         FragmentTransaction t = this.getFragmentManager().beginTransaction();
         Fragment frag = new EventPage();
@@ -74,36 +87,26 @@ public class Event extends ViewFragment{
         t.commit();
     }
 
-    private ArrayList<AanbodEvent> getDataSet() {
+    private boolean getDataSet() {
+        Bedrijf b = new Bedrijf("em","ww","nm","tel","emp","telp");
+        EventSoort s = new EventSoort("test");
+        String datum = "19-03-2019";
+        AanbodEvent eventtest = new AanbodEvent(100,"naam","locatie",datum,1,"omschrijving",s);
+        results.add(eventtest);
 
-        Bedrijf bedrijf = new Bedrijf("mail","ww","naam","tel","mailc","telc");
-        EventSoort ev = new EventSoort("workshop");
+        RestApiHelper eventJSON = RestApiHelper
+                .prepareQuery("aanbodevent")
+                .klasse(AanbodEvent[].class)
+                .build();
+        eventJSON.getArray(ja -> {
+            List<AanbodEvent> events = Arrays.asList((AanbodEvent[]) eventJSON.toPOJO(ja));
+            data = events;
+        });
 
-
-        LiveData<List<EventSoort>> data = new MutableLiveData<>();
-        EventRepository re = new EventRepository();
-        re.getAllAanbodevents();
-        //data = re.getSoorten();
-        //data = re.getInstance().getSoorten();
-        String x = data.toString();
-        //String x (EventSoort.;
-        System.out.println("tostring:          " + x);
-
-
-        String Date1="29/03/2019";
-
-        AanbodEvent obj2 = new AanbodEvent(88, "Workshop HTML" , "Kerkstraat 15 Eindhoven", Date1,
-                50, "Leuke workshop over de basisbegrippen van HTML",bedrijf, ev);
-        results.add(obj2);
-
-        for (int index = 0; index < 20; index++) {
-            AanbodEvent obj = new AanbodEvent(index, "Naam" , "Loatie", Date1,
-                    5, "Omschrijving",bedrijf, ev);
-            results.add(obj);
+        if(data!= null){
+            return true;
         }
 
-
-
-        return results;
+        return false;
     }
 }
