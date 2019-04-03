@@ -1,5 +1,6 @@
 package com.example.bp3.views.fragments.Event;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.v4.app.Fragment;
@@ -15,15 +16,63 @@ import com.example.bp3.service.models.Bedrijf;
 import com.example.bp3.service.models.EventSoort;
 import com.example.bp3.service.repository.EventRepository;
 import com.example.bp3.service.repository.RestApiHelper;
+import com.example.bp3.viewmodels.AanbodEventViewModel;
+import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
 import com.example.bp3.views.adapters.EventRecyclerViewAdapter;
 import com.example.bp3.service.models.AanbodEvent;
+import com.example.bp3.views.adapters.OpdrachtAanbodAdapter;
+import com.example.bp3.views.fragments.Opdracht.OpdrachtAanbodDetails;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Event extends ViewFragment{
+public class Event extends ViewFragment {
     private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.fragment_event, container, false);
+
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.event_recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setHasFixedSize(true);
+        final EventRecyclerViewAdapter adapter = new EventRecyclerViewAdapter();
+
+        AanbodEventViewModel vmEvent = ViewModelProviders.of(this).get(AanbodEventViewModel.class);
+        vmEvent.getAllAanbodevent().observe(this, adapter::setAanbodEvent);
+        adapter.setOnItemClickListener(aanbodEvent -> {
+
+            FragmentTransaction t = this.getFragmentManager().beginTransaction();
+            Fragment frag = new EventPage();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("event", aanbodEvent);
+            frag.setArguments(bundle);
+            t.addToBackStack(null);
+            t.replace(R.id.fragment_container, frag);
+            t.commit();
+
+        });
+        mRecyclerView.setAdapter(adapter);
+        return view;
+    }
+
+    @Override
+    public int title() {
+        return R.string.events_event;
+    }
+
+}
+
+
+
+
+
+/*
+   private RecyclerView mRecyclerView;
+
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList results = new ArrayList<AanbodEvent>();
@@ -32,27 +81,17 @@ public class Event extends ViewFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_event, container, false);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        View view = inflater.inflate(R.layout.fragment_event, container, false);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.event_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(inflater.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         results.clear();
         getDataSet();
-        loop();
-
-
+        mAdapter = new EventRecyclerViewAdapter(data);
+        mRecyclerView.setAdapter(mAdapter);
         return view;
-    }
-
-    public void loop(){
-        if(data != null){
-            mAdapter = new EventRecyclerViewAdapter(data);
-            mRecyclerView.setAdapter(mAdapter);
-        } else{
-            loop();
-        }
     }
 
     @Override
@@ -110,3 +149,4 @@ public class Event extends ViewFragment{
         return false;
     }
 }
+*/

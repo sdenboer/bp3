@@ -19,24 +19,24 @@
             android:layout_height="fill_parent">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textViewEventNummer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textViewEventNaam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textView"
+                android:layout_below="@+id/textViewEventNummer"
                 android:layout_marginTop="10dp"/>
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textViewEventDatum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textView2"
+                android:layout_below="@+id/textViewEventNaam"
                 android:layout_marginTop="10dp"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
