@@ -2,6 +2,7 @@ package com.example.bp3;
 
 import android.arch.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -21,15 +22,23 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.bp3.databinding.ActivityMainBinding;
+import com.example.bp3.service.models.Account;
+import com.example.bp3.service.models.Bedrijf;
+import com.example.bp3.service.models.Docent;
+import com.example.bp3.service.models.Opdracht;
 import com.example.bp3.service.models.OpdrachtAanbod;
+import com.example.bp3.service.models.Student;
 import com.example.bp3.service.repository.RestApiHelper;
 import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
+import com.example.bp3.views.LoginActivity;
 import com.example.bp3.views.adapters.OpdrachtAanbodAdapter;
 import com.example.bp3.views.fragments.ChallengeView;
 import com.example.bp3.views.fragments.Event;
 import com.example.bp3.views.fragments.Event_Aanvragen;
 import com.example.bp3.views.fragments.MyStuffView;
 import com.example.bp3.views.fragments.Opdracht.OpdrachtLesvak;
+
+import java.util.Arrays;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -53,8 +62,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //naar de inlogpagina
+        if (Account.currentUser == null)
+        {
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+        }
+
+
         //DIT WORDT HET HOMESCREEN
 //        displaySelectedScreen(R.id.navigation_assignments);
+
 
 
     }

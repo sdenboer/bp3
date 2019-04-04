@@ -6,6 +6,10 @@ import android.os.Parcelable;
 import lombok.Setter;
 import lombok.Getter;
 
+/**
+ * @author Thom
+ */
+
 @Setter
 @Getter
 public class Student extends Account implements Parcelable {
@@ -21,6 +25,15 @@ public class Student extends Account implements Parcelable {
     public boolean login (String email, String wachtwoord){
         //controleer email en wachtwoord combinatie
         //stuur boolean terug op match
+        /*
+        String naam, telefoon;
+        int leerjaar;
+        Opleiding opleiding;
+
+        Account account = new Docent(email, wachtwoord, naam, telefoon, leerjaar, opleiding);
+
+        currentUser = account;
+        */
         return false;
     }
 

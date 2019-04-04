@@ -28,6 +28,6 @@ public abstract class Account {
     public abstract boolean toevoegenAccount();
 
     public abstract boolean bewerkenAccount(String email);
-    static Account currentUser;
+    public static Account currentUser;
 }
 

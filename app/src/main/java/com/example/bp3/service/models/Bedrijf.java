@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Thom
+ */
+
 @Getter
 @Setter
 public class Bedrijf extends Account {
@@ -24,12 +28,11 @@ public class Bedrijf extends Account {
         //stuur boolean terug op match
 
         /*
-        String email, wachtwoord, naam, telefoon, email_contactpersoon, telefoon_contactpersoon;
-        Bedrijf bedrijf = new Bedrijf(email, wachtwoord, naam, telefoon, email_contactpersoon, telefoon_contactpersoon);
+        String naam, telefoon, email_contactpersoon, telefoon_contactpersoon;
+        Account account = new Bedrijf(email, wachtwoord, naam, telefoon, email_contactpersoon, telefoon_contactpersoon);
 
-        currentUser = bedrijf;
+        currentUser = account;
         */
-
         return false;
     }
 
