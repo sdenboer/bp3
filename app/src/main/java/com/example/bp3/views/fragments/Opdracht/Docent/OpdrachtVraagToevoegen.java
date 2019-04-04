@@ -2,6 +2,7 @@ package com.example.bp3.views.fragments.Opdracht.Docent;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -20,8 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bp3.R;
+import com.example.bp3.databinding.FragmentOpdrachtaanbodDetailsBinding;
+import com.example.bp3.databinding.FragmentOpdrachtvraagAddBinding;
 import com.example.bp3.service.models.Docent;
 import com.example.bp3.service.models.Lesvak;
+import com.example.bp3.service.models.Opdracht;
 import com.example.bp3.service.models.Opleiding;
 import com.example.bp3.viewmodels.OpdrachtViewModel;
 import com.example.bp3.views.fragments.Opdracht.DateAndTimePicker;
@@ -46,12 +50,21 @@ public class OpdrachtVraagToevoegen extends ViewFragment {
     private Spinner mLeerjaar, mLesvak;
     private int jaar, maand, dag, minuut, uur;
     private TextView mDisplayedDeadline;
+    FragmentOpdrachtvraagAddBinding binding;
 
     private Docent mDocent;
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_opdrachtvraag_add, container, false);
+        if (getArguments() != null) {
+            OpdrachtViewModel opdracht = (OpdrachtViewModel) getArguments().getSerializable("opdracht");
+            int id = (int) getArguments().getSerializable("opdrachtId");
+            opdracht.getOpdrachtById(id, this);
+            Log.d("HELLO", opdracht.opdrachtNaam);
+            binding.setOpdracht(opdracht);
+        }
         Lesvak info = new Lesvak("informatica");
         Lesvak program = new Lesvak("program");
         ArrayList<Lesvak> lesvaks = new ArrayList<>();
@@ -62,9 +75,9 @@ public class OpdrachtVraagToevoegen extends ViewFragment {
         final View root = inflater.inflate(R.layout.fragment_opdrachtvraag_add, container, false);
         mLesvak = root.findViewById(R.id.opdrachtvraag_add_lesvak);
         getLayoutElements(root);
+//        setLayoutElements();
         setLesvakkenDropdown(root);
         mToevoegen.setOnClickListener(event -> validateInput());
-
         return root;
     }
 
@@ -85,6 +98,10 @@ public class OpdrachtVraagToevoegen extends ViewFragment {
         mLeerjaar = root.findViewById(R.id.opdrachtvraag_add_leerjaar);
         mDisplayedDeadline = root.findViewById(R.id.opdrachtvraag_deadline);
         mDeadline.setOnClickListener(event -> new DateAndTimePicker().show(getFragmentManager(), ""));
+    }
+
+    private void setLayoutElements() {
+
     }
 
     private void setLesvakkenDropdown(View root) {

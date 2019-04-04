@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:text="@string/delete"
+            android:id="@+id/mijn_activiteiten_docent_delete"
             android:layout_below="@id/mijn_activiteiten_docent_lesvak"
             android:layout_toEndOf="@id/mijn_activiteiten_docent_edit"/>
 

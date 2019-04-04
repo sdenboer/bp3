@@ -57,6 +57,18 @@ public class OpdrachtRepository extends AbstractRepository{
         return data;
     }
 
+    public LiveData<Opdracht> getOpdrachtById(int id) {
+        final MutableLiveData<Opdracht> data = new MutableLiveData<>();
+        restApiHelper = RestApiHelper.prepareQuery(urlModel)
+                .klasse(Opdracht.class)
+                .parameters(Arrays.asList(id)).build();
+        restApiHelper.getObject(jo -> {
+            Opdracht opdracht = (Opdracht) restApiHelper.toPOJO(jo);
+            data.setValue(opdracht);
+        }, error -> Log.e("Kutzooi", error.toString()));
+        return data;
+    }
+
     public synchronized static OpdrachtRepository getInstance() {
         if (opdrachtRepository == null) {
             opdrachtRepository = new OpdrachtRepository();

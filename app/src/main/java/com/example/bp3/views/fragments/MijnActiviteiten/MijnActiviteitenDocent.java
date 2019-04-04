@@ -1,6 +1,7 @@
 package com.example.bp3.views.fragments.MijnActiviteiten;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -23,6 +24,7 @@ import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 import java.util.ArrayList;
 
 public class MijnActiviteitenDocent extends ViewFragment {
+    private Opdracht opdracht;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class MijnActiviteitenDocent extends ViewFragment {
     }
 
     private OpdrachtAdapter setAdapter() {
-        OpdrachtAdapter adapter = new OpdrachtAdapter();
+        OpdrachtAdapter adapter = new OpdrachtAdapter(this);
         OpdrachtViewModel vm = ViewModelProviders.of(this).get(OpdrachtViewModel.class);
         Lesvak info = new Lesvak("informatica");
         Lesvak program = new Lesvak("program");
@@ -50,20 +52,13 @@ public class MijnActiviteitenDocent extends ViewFragment {
         Opleiding opleiding = new Opleiding("hbo", "Avans", "Ad Informatica", lesvaks);
         Docent docent = new Docent("BKatwijk@avans.nl", "wachtwoord", "Bregtje van Katwijk", "0699999999", opleiding, lesvaks);
         vm.getMyPosted(docent).observe(this, adapter::setOpdrachten);
-        adapter.setOnItemClickListener(this::onItemClick);
+//        adapter.setOnItemClickListener(this::onItemClick);
         return adapter;
     }
 
-    private void onItemClick(Opdracht opdracht) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("opdracht", opdracht);
-        Fragment fragment = new OpdrachtAanbodDetails();
-        fragment.setArguments(bundle);
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.addToBackStack(null);
-        ft.replace(R.id.fragment_container, fragment);
-        ft.commit();
-    }
+//    private void onItemClick(Opdracht opdracht) {
+//
+//    }
 
 
     @Override
