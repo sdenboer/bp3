@@ -1,15 +1,9 @@
-package com.example.bp3.views.fragments.Opdracht;
+package com.example.bp3.views.fragments.Opdracht.Docent;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,16 +14,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.bp3.R;
-import com.example.bp3.views.fragments.Opdracht.Docent.IDataSendDeadline;
-import com.example.bp3.views.fragments.Opdracht.Docent.OpdrachtVraagToevoegen;
 
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
-import java.util.TimeZone;
 
+/**
+ * @author sven
+ */
 public class DateAndTimePicker extends DialogFragment {
     private IDataSendDeadline send;
     private int jaar;
@@ -59,7 +51,7 @@ public class DateAndTimePicker extends DialogFragment {
 
         DatePicker datePicker = root.findViewById(R.id.datePickerExample);
         datePicker.setMinDate(currCalendar.getTimeInMillis());
-        datePicker.init(jaar, maand , dag, (datePicker1, jaar, maand, dag) -> {
+        datePicker.init(jaar, maand, dag, (datePicker1, jaar, maand, dag) -> {
             DateAndTimePicker.this.jaar = jaar;
             DateAndTimePicker.this.maand = maand;
             DateAndTimePicker.this.dag = dag;
@@ -82,7 +74,7 @@ public class DateAndTimePicker extends DialogFragment {
 
             Map<String, Integer> datetime = new HashMap<>();
             datetime.put("jaar", jaar);
-            datetime.put("maand", maand +1);
+            datetime.put("maand", maand + 1);
             datetime.put("dag", dag);
             datetime.put("uur", uur);
             datetime.put("minuut", minuut);
@@ -93,20 +85,19 @@ public class DateAndTimePicker extends DialogFragment {
         return root;
     }
 
-    private void showUserSelectDateTime(View root)
-    {
+    private void showUserSelectDateTime(View root) {
         TextView textView = root.findViewById(R.id.textViewShowDateTime);
 
         String strBuffer =
                 this.dag +
-                "-" +
-                this.maand +
-                "-" +
-                this.jaar +
-                " " +
-                this.uur +
-                ":" +
-                this.minuut;
+                        "-" +
+                        this.maand +
+                        "-" +
+                        this.jaar +
+                        " " +
+                        this.uur +
+                        ":" +
+                        this.minuut;
         textView.setText(strBuffer);
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(20);

@@ -9,14 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.bp3.R;
 import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
 import com.example.bp3.views.adapters.OpdrachtAanbodAdapter;
-import com.example.bp3.views.fragments.Opdracht.OpdrachtAanbodDetails;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
-
+/**
+ * @author sven
+ */
 public class OpdrachtAanbodLesvak extends ViewFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class OpdrachtAanbodLesvak extends ViewFragment {
     private OpdrachtAanbodAdapter setAdapter() {
         OpdrachtAanbodAdapter adapter = new OpdrachtAanbodAdapter();
         OpdrachtAanbodViewModel vm = ViewModelProviders.of(this).get(OpdrachtAanbodViewModel.class);
-        vm.getStudentZietOpdrachten("Avans", "AD Informatica", 1).observe(this, adapter::setOpdrachtAanbod);
+        vm.getStudentZietOpdrachten().observe(this, adapter::setOpdrachtAanbod);
         adapter.setOnItemClickListener(this::onItemClick);
         return adapter;
     }

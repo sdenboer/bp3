@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.bp3.R;
+import com.example.bp3.service.models.Account;
+import com.example.bp3.service.models.Bedrijf;
 import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.service.models.Student;
 import com.example.bp3.service.models.Team;
@@ -19,7 +21,9 @@ import com.example.bp3.viewmodels.TeamViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author sven
+ */
 public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.TeamMemberHolder> {
 
     private List<Student> member = new ArrayList<>();
@@ -29,8 +33,15 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
     private DialogFragment dialogFragment;
     private TeamViewModel tvm;
     private OnItemClickListener listener;
+    private Student student;
+    private Bedrijf bedrijf;
 
     public TeamMemberAdapter(DialogFragment dialogFragment, Application application, OpdrachtAanbod oa) {
+        if (Account.currentUser instanceof Student) {
+            this.student = (Student) Account.currentUser;
+        } else if (Account.currentUser instanceof Bedrijf) {
+            this.bedrijf = (Bedrijf) Account.currentUser;
+        }
         this.dialogFragment = dialogFragment;
         this.tvm = new TeamViewModel(application);
         this.maxStudents = oa.getOpdracht().getAantStudMax();
@@ -47,28 +58,42 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
 
     @Override
     public void onBindViewHolder(@NonNull TeamMemberHolder teamHolder, int i) {
-        try {
-            Student s = this.member.get(i);
-            teamHolder.delete.setOnClickListener(e -> {
-                this.team.removeTeamMember(s);
-                if (this.team.getTeamMembers().size() == 0) {
-                    tvm.delete(team);
-                } else {
-                    tvm.update(team);
+        if (Account.currentUser instanceof Student) {
+            try {
+                Student s = this.member.get(i);
+                teamHolder.delete.setOnClickListener(e -> {
+                    this.team.removeTeamMember(s);
+                    if (this.team.getTeamMembers().size() == 0) {
+                        tvm.delete(team);
+                    } else {
+                        tvm.update(team);
+                    }
+                    dialogFragment.dismiss();
+                });
+                if (s.getEmail().equals(student.getEmail())) {
+                    teamHolder.delete.setVisibility(View.VISIBLE);
                 }
-                dialogFragment.dismiss();
-            });
-            if (s.getEmail().equals("CRidderhof@student.kw1c.nl")) {
-                teamHolder.delete.setVisibility(View.VISIBLE);
+                teamHolder.getMemberNaam().setText(s.getNaam());
+            } catch (IndexOutOfBoundsException e) {
+                if (i < minStudents) {
+                    teamHolder.getMemberNaam().setBackgroundColor(Color.RED);
+                } else {
+                    teamHolder.getMemberNaam().setBackgroundColor(Color.GREEN);
+                }
+                teamHolder.getMemberNaam().setText("Schrijf jezelf in");
             }
-            teamHolder.getMemberNaam().setText(s.getNaam());
-        } catch (IndexOutOfBoundsException e) {
-            if (i < minStudents) {
-                teamHolder.getMemberNaam().setBackgroundColor(Color.RED);
-            } else {
-                teamHolder.getMemberNaam().setBackgroundColor(Color.GREEN);
+        } else if (Account.currentUser instanceof Bedrijf) {
+            try {
+                Student s = this.member.get(i);
+                teamHolder.getMemberNaam().setText(s.getNaam());
+            } catch (IndexOutOfBoundsException e) {
+                if (i < minStudents) {
+                    teamHolder.getMemberNaam().setBackgroundColor(Color.RED);
+                } else {
+                    teamHolder.getMemberNaam().setBackgroundColor(Color.GREEN);
+                }
+                teamHolder.getMemberNaam().setText("Deze plekken zijn nog leeg");
             }
-            teamHolder.getMemberNaam().setText("Schrijf jezelf in");
         }
 
     }
@@ -105,7 +130,9 @@ public class TeamMemberAdapter extends RecyclerView.Adapter<TeamMemberAdapter.Te
                     try {
                         listener.onItemClick(member.get(i));
                     } catch (IndexOutOfBoundsException e) {
-//                        listener.onItemClick(new Student());
+                        if (Account.currentUser instanceof Student) {
+                            listener.onItemClick(student);
+                        }
                     }
 
                 }

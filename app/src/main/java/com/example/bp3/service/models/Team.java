@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,9 +18,9 @@ public class Team implements Serializable {
 
     private String teamNaam;
     @SerializedName("studentCollection")
-    private ArrayList<Student> teamMembers;
+    private ArrayList<Student> teamMembers = new ArrayList<>();
 
-    public Team(String teamNaam){
+    public Team(String teamNaam) {
         this.teamNaam = teamNaam;
     }
 

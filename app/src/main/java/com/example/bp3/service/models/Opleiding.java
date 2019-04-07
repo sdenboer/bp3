@@ -28,11 +28,13 @@ public class Opleiding {
         this.lesvakken = lesvakken;
     }
 
+    @Getter
+    @Setter
     public class OpleidingPK {
         @SerializedName("onderwijsinstelling")
         public String onderwijsinstelling;
         @SerializedName("opleidingsnaam")
-        private String opleidingsnaam;
+        public String opleidingsnaam;
     }
 
 }

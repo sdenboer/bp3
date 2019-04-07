@@ -3,7 +3,6 @@ package com.example.bp3.service.models;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import lombok.Setter;
 /**
  * @author Sven
  */
-
 @Getter
 @Setter
 public class Activiteit implements Serializable {
@@ -31,7 +29,7 @@ public class Activiteit implements Serializable {
 
     public String getPrettyDeadline() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy HH:mm");
-        LocalDateTime time =  LocalDateTime.parse (this.deadline.replaceAll("\\+(.*)$", ""));
+        LocalDateTime time = LocalDateTime.parse(this.deadline.replaceAll("\\+(.*)$", ""));
         return formatter.format(time);
     }
 

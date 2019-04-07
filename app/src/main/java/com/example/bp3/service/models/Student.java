@@ -3,6 +3,8 @@ package com.example.bp3.service.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Setter;
 import lombok.Getter;
 
@@ -15,11 +17,16 @@ import lombok.Getter;
 public class Student extends Account {
     private int leerjaar;
     private Opleiding opleiding;
+    @SerializedName("studentEmail")
+    private String email;
+    private String naam;
 
     public Student(String email, String wachtwoord, String naam, String telefoon, int leerjaar, Opleiding opleiding) {
-        super(email, wachtwoord, naam, telefoon);
+        super(wachtwoord, telefoon);
         this.leerjaar = leerjaar;
         this.opleiding = opleiding;
+        this.email = email;
+        this.naam = naam;
     }
 
     public boolean login (String email, String wachtwoord){

@@ -9,21 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bp3.R;
-import com.example.bp3.viewmodels.OpdrachtViewModel;
-import com.example.bp3.views.adapters.DocentOpdrachtAdapter;
+import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
+import com.example.bp3.views.adapters.BedrijfOpdrachtAdapter;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
 /**
  * @author sven
  */
-public class MijnActiviteitenDocent extends ViewFragment {
-    private OpdrachtViewModel vm;
-    private DocentOpdrachtAdapter adapter;
+public class MijnActiviteitenBedrijf extends ViewFragment {
+    private OpdrachtAanbodViewModel vm;
+    private BedrijfOpdrachtAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
         final View root = inflater.inflate(R.layout.fragment_mijn_activiteiten, container, false);
         setRecyclerView(root);
         return root;
@@ -33,14 +31,14 @@ public class MijnActiviteitenDocent extends ViewFragment {
         RecyclerView recyclerView = root.findViewById(R.id.opdracht_docent_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
-        DocentOpdrachtAdapter adapter = setAdapter();
+        BedrijfOpdrachtAdapter adapter = setAdapter();
         recyclerView.setAdapter(adapter);
     }
 
-    private DocentOpdrachtAdapter setAdapter() {
-        adapter = new DocentOpdrachtAdapter(this);
-        vm = ViewModelProviders.of(this).get(OpdrachtViewModel.class);
-        vm.getMyPosted().observe(this, adapter::setOpdrachten);
+    private BedrijfOpdrachtAdapter setAdapter() {
+        adapter = new BedrijfOpdrachtAdapter(this);
+        vm = ViewModelProviders.of(this).get(OpdrachtAanbodViewModel.class);
+        vm.getBedrijfZietOpdrachten().observe(this, adapter::setOpdrachten);
         return adapter;
     }
 
@@ -48,10 +46,5 @@ public class MijnActiviteitenDocent extends ViewFragment {
     public int title() {
         return R.string.projecten_mystuff;
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        vm.getMyPosted().removeObserver(adapter::setOpdrachten);
-    }
 }
+

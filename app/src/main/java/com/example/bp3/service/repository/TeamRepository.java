@@ -3,11 +3,16 @@ package com.example.bp3.service.repository;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
+
+import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.service.models.Team;
+
 import java.util.Arrays;
 import java.util.List;
-
-public class TeamRepository extends AbstractRepository{
+/**
+ * @author sven
+ */
+public class TeamRepository extends AbstractRepository {
 
     private RestApiHelper restApiHelper;
     private static TeamRepository teamRepository;
@@ -18,10 +23,13 @@ public class TeamRepository extends AbstractRepository{
         return "team";
     }
 
-    public void create(Team team) {
+    public void create(Team team, OpdrachtAanbod opdrachtAanbod) {
         RestApiHelper.prepareQuery(urlModel)
                 .build()
-                .post(team, response -> Log.d("POST", "Het object zit in de database!"), error -> Log.e("Webservice Error", error.toString()));
+                .post(team, response -> {
+                    opdrachtAanbod.opdrachtInschrijving(team);
+                    OpdrachtAanbodRepository.getInstance().update(opdrachtAanbod);
+                }, error -> Log.e("Webservice Error", error.toString()));
     }
 
     public LiveData<List<Team>> beschikbareTeams(int opdrachtId) {
@@ -63,7 +71,6 @@ public class TeamRepository extends AbstractRepository{
         }
         return teamRepository;
     }
-
 
 
 }

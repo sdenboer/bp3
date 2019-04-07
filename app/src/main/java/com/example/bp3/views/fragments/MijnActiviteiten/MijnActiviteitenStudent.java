@@ -14,9 +14,12 @@ import com.example.bp3.R;
 import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.viewmodels.OpdrachtAanbodViewModel;
 import com.example.bp3.views.adapters.OpdrachtAanbodAdapter;
-import com.example.bp3.views.fragments.Opdracht.OpdrachtAanbodDetails;
+import com.example.bp3.views.fragments.Opdracht.Student.OpdrachtAanbodDetails;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
 
+/**
+ * @author sven
+ */
 public class MijnActiviteitenStudent extends ViewFragment {
 
     @Override
@@ -43,7 +46,7 @@ public class MijnActiviteitenStudent extends ViewFragment {
     private OpdrachtAanbodAdapter setAdapter() {
         OpdrachtAanbodAdapter adapter = new OpdrachtAanbodAdapter();
         OpdrachtAanbodViewModel vm = ViewModelProviders.of(this).get(OpdrachtAanbodViewModel.class);
-        vm.getStudentZietEigenOpdrachten("jklaas@student.avans.nl").observe(this, adapter::setOpdrachtAanbod);
+        vm.getStudentZietEigenOpdrachten().observe(this, adapter::setOpdrachtAanbod);
         adapter.setOnItemClickListener(this::onItemClick);
         return adapter;
     }

@@ -17,7 +17,6 @@ public abstract class ViewFragment extends Fragment {
     }
 
 
-
     public abstract int title();
 
 }

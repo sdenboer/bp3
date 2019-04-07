@@ -9,16 +9,32 @@ import com.example.bp3.service.models.OpdrachtAanbod;
 import java.util.Arrays;
 import java.util.List;
 
-
-public class OpdrachtAanbodRepository extends AbstractRepository{
+/**
+ * @author sven
+ */
+public class OpdrachtAanbodRepository extends AbstractRepository {
 
     private RestApiHelper restApiHelper;
     private static OpdrachtAanbodRepository opdrachtAanbodRepository;
+    private OpdrachtAanbod opdrachtAanbod;
 
     public void create(OpdrachtAanbod opdrachtAanbod) {
         RestApiHelper.prepareQuery(urlModel)
                 .build()
                 .post(opdrachtAanbod, response -> Log.d("POST", "Het object zit in de database!"), error -> Log.e("Webservice Error", error.toString()));
+    }
+
+    public LiveData<OpdrachtAanbod> getById(OpdrachtAanbod opdracht) {
+        final MutableLiveData<OpdrachtAanbod> data = new MutableLiveData<>();
+        restApiHelper = RestApiHelper.prepareQuery(urlModel)
+                .klasse(OpdrachtAanbod.class)
+                .parameters(Arrays.asList(opdracht.getId()))
+                .build();
+        restApiHelper.getObject(jo -> {
+            OpdrachtAanbod opdrachtAanbod = (OpdrachtAanbod) restApiHelper.toPOJO(jo);
+            data.setValue(opdrachtAanbod);
+        }, error -> Log.e("Webservice Error", error.toString()));
+        return data;
     }
 
     public LiveData<List<OpdrachtAanbod>> studentZietOpdrachtenLeskvak(String instelling, String opleiding, Integer leerjaar) {
@@ -39,22 +55,21 @@ public class OpdrachtAanbodRepository extends AbstractRepository{
                 .klasse(OpdrachtAanbod[].class)
                 .parameters(Arrays.asList("my", email))
                 .build();
-        restApiHelper.getArray(jsonArray -> {
-            data.setValue(Arrays.asList((OpdrachtAanbod[]) restApiHelper.toPOJO(jsonArray)));
-        }, error -> Log.e("Webservice Error", error.toString()));
+        restApiHelper.getArray(jsonArray -> data.setValue(Arrays.asList((OpdrachtAanbod[]) restApiHelper.toPOJO(jsonArray))),
+                error -> Log.e("Webservice Error", error.toString()));
         return data;
     }
 
-
-//    public List<OpdrachtInschrijving> opdrachtInschrijving(int id) {
-//        final MutableLiveData<List<OpdrachtInschrijving>> data = new MutableLiveData<>();
-//        restApiHelper = RestApiHelper.prepareQuery("opdrachtaanbod")
-//                .klasse(OpdrachtInschrijving[].class)
-//                .parameters(Arrays.asList(id))
-//                .build();
-//        restApiHelper.getArray(jsonArray -> data.setValue(Arrays.asList((OpdrachtInschrijving[]) restApiHelper.toPOJO(jsonArray))));
-//        return data;
-//    }
+    public LiveData<List<OpdrachtAanbod>> bedrijfZietEigenOpdrachten(String email) {
+        final MutableLiveData<List<OpdrachtAanbod>> data = new MutableLiveData<>();
+        restApiHelper = RestApiHelper.prepareQuery(urlModel)
+                .klasse(OpdrachtAanbod[].class)
+                .parameters(Arrays.asList("myposted", email))
+                .build();
+        restApiHelper.getArray(jsonArray -> data.setValue(Arrays.asList((OpdrachtAanbod[]) restApiHelper.toPOJO(jsonArray))),
+                error -> Log.e("Webservice Error", error.toString()));
+        return data;
+    }
 
     public LiveData<List<OpdrachtAanbod>> opdrachtAanbodByVraagId(int id) {
         final MutableLiveData<List<OpdrachtAanbod>> data = new MutableLiveData<>();
@@ -62,10 +77,10 @@ public class OpdrachtAanbodRepository extends AbstractRepository{
                 .klasse(OpdrachtAanbod[].class)
                 .parameters(Arrays.asList("vraag", id))
                 .build();
-        restApiHelper.getArray(jsonArray -> data.setValue(Arrays.asList((OpdrachtAanbod[]) restApiHelper.toPOJO(jsonArray))), error -> Log.e("Webservice Error", error.toString()));
+        restApiHelper.getArray(jsonArray -> data.setValue(Arrays.asList((OpdrachtAanbod[]) restApiHelper.toPOJO(jsonArray)))
+                , error -> Log.e("Webservice Error", error.toString()));
         return data;
     }
-
 
 
     public void update(OpdrachtAanbod opdrachtAanbod) {

@@ -15,18 +15,21 @@ import android.widget.TextView;
 import com.example.bp3.R;
 import com.example.bp3.service.models.Opdracht;
 import com.example.bp3.viewmodels.OpdrachtViewModel;
-import com.example.bp3.views.fragments.Opdracht.Docent.OpdrachtVraagToevoegen;
+import com.example.bp3.views.fragments.MijnActiviteiten.MijnActiviteitenDocent;
+import com.example.bp3.views.fragments.Opdracht.Docent.OpdrachtVraagAdd;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpdrachtAdapter extends RecyclerView.Adapter<OpdrachtAdapter.OpdrachtAdapterHolder> {
+/**
+ * @author sven
+ */
+public class DocentOpdrachtAdapter extends RecyclerView.Adapter<DocentOpdrachtAdapter.OpdrachtAdapterHolder> {
 
     private List<Opdracht> opdrachten = new ArrayList<>();
-    private OpdrachtAdapter.OnItemClickListener listener;
     private Fragment currentFragment;
 
-    public OpdrachtAdapter(Fragment fragment) {
+    public DocentOpdrachtAdapter(Fragment fragment) {
         this.currentFragment = fragment;
     }
 
@@ -35,7 +38,7 @@ public class OpdrachtAdapter extends RecyclerView.Adapter<OpdrachtAdapter.Opdrac
     public OpdrachtAdapterHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.card_mijn_activiteiten_docent, viewGroup, false);
-        return new OpdrachtAdapter.OpdrachtAdapterHolder(itemView, opdrachten);
+        return new DocentOpdrachtAdapter.OpdrachtAdapterHolder(itemView);
     }
 
     @Override
@@ -43,18 +46,30 @@ public class OpdrachtAdapter extends RecyclerView.Adapter<OpdrachtAdapter.Opdrac
         Opdracht opdracht = this.opdrachten.get(i);
         opdrachtHolder.getLesvak().setText(opdracht.getLesvak());
         opdrachtHolder.getOpdrachtnaam().setText(opdracht.getOpdrachtNaam());
-        opdrachtHolder.getBtnEdit().setOnClickListener(e -> {
-            OpdrachtViewModel vm = ViewModelProviders.of(currentFragment).get(OpdrachtViewModel.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("opdracht", vm);
-            bundle.putSerializable("opdrachtId", opdracht.getOpdrachtId());
-            Fragment fragment = new OpdrachtVraagToevoegen();
-            fragment.setArguments(bundle);
-            FragmentTransaction ft = currentFragment.getActivity().getSupportFragmentManager().beginTransaction();
-            ft.addToBackStack(null);
-            ft.replace(R.id.fragment_container, fragment);
-            ft.commit();
-        });
+        opdrachtHolder.getBtnEdit().setOnClickListener(e -> editOnClick(opdracht));
+        opdrachtHolder.getBtnDelete().setOnClickListener(e -> deleteOnClick(opdracht));
+    }
+
+    private void deleteOnClick(Opdracht opdracht) {
+        OpdrachtViewModel vm = ViewModelProviders.of(currentFragment).get(OpdrachtViewModel.class);
+        vm.delete(opdracht);
+        Fragment fragment = new MijnActiviteitenDocent();
+        FragmentTransaction ft = currentFragment.getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, fragment, "fragment");
+        ft.commit();
+    }
+
+    private void editOnClick(Opdracht opdracht) {
+        OpdrachtViewModel vm = ViewModelProviders.of(currentFragment).get(OpdrachtViewModel.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("opdracht", vm);
+        bundle.putSerializable("opdrachtId", opdracht.getOpdrachtId());
+        Fragment fragment = new OpdrachtVraagAdd();
+        fragment.setArguments(bundle);
+        FragmentTransaction ft = currentFragment.getActivity().getSupportFragmentManager().beginTransaction();
+        ft.addToBackStack(null);
+        ft.replace(R.id.fragment_container, fragment, "fragment");
+        ft.commit();
     }
 
     @Override
@@ -74,18 +89,12 @@ public class OpdrachtAdapter extends RecyclerView.Adapter<OpdrachtAdapter.Opdrac
         private Button btnDelete;
 
 
-        public OpdrachtAdapterHolder(@NonNull View itemView, List<Opdracht> opdrachten) {
+        public OpdrachtAdapterHolder(@NonNull View itemView) {
             super(itemView);
             lesvak = itemView.findViewById(R.id.mijn_activiteiten_docent_lesvak);
             opdrachtnaam = itemView.findViewById(R.id.mijn_activiteiten_docent_opdrachtnaam);
             btnEdit = itemView.findViewById(R.id.mijn_activiteiten_docent_edit);
             btnDelete = itemView.findViewById(R.id.mijn_activiteiten_docent_delete);
-            itemView.setOnClickListener(v -> {
-                int i = getAdapterPosition();
-                if (listener != null && i != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(opdrachten.get(i));
-                }
-            });
         }
 
         public Button getBtnEdit() {
@@ -103,14 +112,6 @@ public class OpdrachtAdapter extends RecyclerView.Adapter<OpdrachtAdapter.Opdrac
         public TextView getOpdrachtnaam() {
             return opdrachtnaam;
         }
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(Opdracht opdracht);
-    }
-
-    public void setOnItemClickListener(OpdrachtAdapter.OnItemClickListener listener) {
-        this.listener = listener;
     }
 
 }

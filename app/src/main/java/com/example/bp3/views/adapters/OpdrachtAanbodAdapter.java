@@ -11,7 +11,9 @@ import com.example.bp3.R;
 import com.example.bp3.service.models.OpdrachtAanbod;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author sven
+ */
 public class OpdrachtAanbodAdapter extends RecyclerView.Adapter<OpdrachtAanbodAdapter.OpdrachtAanbodHolder> {
 
     private List<OpdrachtAanbod> opdrachtAanbod = new ArrayList<>();

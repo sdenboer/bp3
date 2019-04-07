@@ -35,9 +35,13 @@ import android.widget.TextView;
 
 import com.example.bp3.R;
 import com.example.bp3.service.models.Team;
+
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author sven
+ */
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder> {
 
     private List<Team> teams = new ArrayList<>();

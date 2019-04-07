@@ -47,9 +47,6 @@
                     android:icon="@drawable/ic_project_24dp"
                     android:title="@string/projecten_opdrachten" />
                 <item
-                    android:id="@+id/navigation_challenges"
-                    android:title="@string/projecten_challenges" />
-                <item
                     android:id="@+id/navigation_mystuff"
                     android:title="@string/projecten_mystuff" />
             </menu>

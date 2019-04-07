@@ -1,4 +1,5 @@
 package com.example.bp3.service.repository;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -12,7 +13,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bp3.service.models.Opdracht;
 import com.example.bp3.service.models.Tag;
-import com.example.bp3.service.models.Vacature;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
@@ -42,6 +43,7 @@ public class RestApiHelper {
     private String urlModel;
     private List<Object> parameters;
     private static RequestQueue requestQueue;
+    private String ipAdress = "192.168.0.102";
 
     //APPLICATION ONLOAD
     /**
@@ -101,7 +103,7 @@ public class RestApiHelper {
      * @param error is de interface voor onError
      * @see WebServiceCallBackArray
      */
-    public void getArray(final WebServiceCallBackArray callback, final WebServiceCallbackFail error) { //function to be run
+    public void getArray(final WebServiceCallBackArray callback, final WebServiceCallbackFail error) {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, buildURL(), new JSONArray(), callback::onSuccess, error::onError) {
             @Override
             public Map<String, String> getHeaders() {
@@ -133,7 +135,7 @@ public class RestApiHelper {
      */
     public void post(Object object, final WebServiceCallback callback, final WebServiceCallbackFail error) {
         String body = new Gson().toJson(object);
-        Log.d("Test", body);
+        Log.d("Post", body);
         StringRequest request = new StringRequest(Request.Method.POST, buildURL(), callback::onSuccess, error::onError) {
             @Override
             public String getBodyContentType() {
@@ -154,6 +156,7 @@ public class RestApiHelper {
      */
     public void update(Object object, final WebServiceCallback callback, final WebServiceCallbackFail error){
         String body = new Gson().toJson(object);
+        Log.d("EF", body);
         StringRequest request = new StringRequest(Request.Method.PUT, buildURL(), callback::onSuccess, error::onError) {
             @Override
             public String getBodyContentType() {
@@ -193,11 +196,13 @@ public class RestApiHelper {
      */
     private String buildURL() {
         StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append("http://192.168.0.102:8080/bp3webservice/webresources/models.").append(this.urlModel);
+
+        urlBuilder.append("http://").append("192.168.122.1").append(":8080/bp3webservice/webresources/models.").append(this.urlModel);
         if (parameters != null) {
             parameters.forEach(value -> urlBuilder.append("/").append(value));
         }
-        return urlBuilder.toString();
+        Log.d("URL", urlBuilder.toString());
+        return urlBuilder.toString().replaceAll(" ", "%20");
     }
     /**
      * Deze functie maakt het makkelijker om de http Request content type naar JSON te zetten

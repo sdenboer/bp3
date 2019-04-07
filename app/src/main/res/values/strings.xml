@@ -31,6 +31,7 @@
     <string name="projecten_opdrachten_details">Opdracht Details</string>
     <string name="projecten_challenges">Challenges</string>
     <string name="projecten_mystuff">Mijn activiteiten</string>
+    <string name="opdracht_toevoegen">Opdracht Toevoegen</string>
 
     <!-- EVENTS-->
     <string name="events_event">Events</string>
@@ -72,4 +73,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="bekijk">Bekijk</string>
+    <string name="bewerken">Bewerken</string>
 </resources>

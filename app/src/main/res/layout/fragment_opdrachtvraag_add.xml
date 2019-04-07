@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <data>
-        <variable
-            name="opdracht"
-            type="com.example.bp3.viewmodels.OpdrachtViewModel"/>
-    </data>
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,7 +7,7 @@
         <GridLayout
             android:columnCount="2"
             android:useDefaultMargins="true"
-            android:rowCount="13"
+            android:rowCount="15"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
@@ -43,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_columnSpan="2"
                 android:layout_height="wrap_content"
-                android:text="@{opdracht.liveOpdracht.value"
+                android:text=''
                 />
             <TextView
                 android:layout_column="0"
@@ -78,7 +72,7 @@
                 android:layout_row="5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{opdracht.deadline}"
+                android:text=""
                 />
 
             <TextView
@@ -96,7 +90,7 @@
                 android:layout_width="100dp"
                 android:inputType="number"
                 android:layout_height="wrap_content"
-                android:text="@{opdracht.aantStudMin}"
+                android:text=""
                 />
 
             <TextView
@@ -115,7 +109,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_row="7"
                 android:layout_width="100dp"
-                android:text="@{opdracht.aantStudMax}"
+                android:text=""
                 android:layout_height="wrap_content" />
 
             <TextView
@@ -144,6 +138,8 @@
                 android:text="Eisen"
                 />
             <EditText
+                android:gravity="top|start"
+                android:hint="Vul hier de eisen in voor de opdracht"
                 android:layout_column="0"
                 android:id="@+id/opdrachtvraag_add_eisen"
                 android:layout_row="11"
@@ -151,12 +147,24 @@
                 android:layout_columnSpan="2"
                 android:layout_height="200dp"
                 android:layout_width="400dp"
-                android:text="@{opdracht.eisen}"
+                android:text=""
+                />
+
+            <EditText
+                android:layout_column="0"
+                android:layout_row="13"
+                android:layout_width="match_parent"
+                android:layout_columnSpan="2"
+                android:layout_rowSpan="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/opdrachtvraag_tags"
+                android:hint="Tags: informatica, hbo, java, etc"
+                android:text=""
                 />
 
             <Button
                 android:layout_column="0"
-                android:layout_row="12"
+                android:layout_row="14"
                 android:layout_width="wrap_content"
                 android:layout_rowSpan="1"
                 android:layout_height="wrap_content"
@@ -166,4 +174,3 @@
         </GridLayout>
 
     </ScrollView>
-</layout>
