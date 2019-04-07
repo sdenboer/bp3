@@ -36,6 +36,9 @@ public class AanmakenAccount extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_aanmaken_account);
+
         rdbStudent = (RadioButton) findViewById(R.id.rdbStudent);
         rdbDocent = (RadioButton) findViewById(R.id.rdbDocent);
         rdbBedrijf = (RadioButton) findViewById(R.id.rdbBedrijf);
@@ -91,8 +94,7 @@ public class AanmakenAccount extends AppCompatActivity {
 
         });
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aanmaken_account);
+
     }
 
     private void maakStudent(Student account){

@@ -190,6 +190,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        Button btnAanmaken = (Button) findViewById(R.id.btnMaakAccount);
+        btnAanmaken.setOnClickListener((v) -> {
+            Intent i = new Intent(v.getContext(), AanmakenAccount.class);
+            startActivity(i);
+        });
 
 
         mLoginFormView = findViewById(R.id.login_form);
