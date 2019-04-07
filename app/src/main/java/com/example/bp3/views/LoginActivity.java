@@ -32,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ import com.example.bp3.service.models.Docent;
 import com.example.bp3.service.models.Student;
 import com.example.bp3.service.repository.RestApiHelper;
 import com.example.bp3.views.fragments.MyStuffView;
+
+import org.w3c.dom.Text;
 
 import static android.Manifest.permission.READ_CONTACTS;
 /**
@@ -97,6 +100,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        RadioButton rdbStudent = (RadioButton) findViewById(R.id.rdbStudent);
+        RadioButton rdbDocent = (RadioButton) findViewById(R.id.rdbDocent);
+        RadioButton rdbBedrijf = (RadioButton) findViewById(R.id.rdbBedrijf);
+        TextView lblError = (TextView) findViewById(R.id.lblError);
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener((v) -> {
             /*@Override
@@ -104,6 +111,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 attemptLogin();
             }*/
 
+            /*
             ////////////////TEST ACCOUNTS////////////////////////////
             //Test Student ophalen
             RestApiHelper studentJSON = RestApiHelper
@@ -149,12 +157,61 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             */
             /////////////////////////////////////////////////////
 
+            if (rdbStudent.isChecked()){
+                RestApiHelper studentJSON = RestApiHelper
+                        .prepareQuery("student")
+                        .klasse(Student.class)
+                        .parameters(Arrays.asList(mEmailView.getText().toString()))
+                        .build();
+                studentJSON.getObject(jo -> {
+                    Student student = (Student) studentJSON.toPOJO(jo);
+                    toMain(student);
+                });
+            } else if (rdbDocent.isChecked()){
+                RestApiHelper docentJSON = RestApiHelper
+                        .prepareQuery("docent")
+                        .klasse(Docent.class)
+                        .parameters(Arrays.asList(mEmailView.getText().toString()))
+                        .build();
+                docentJSON.getObject(jo -> {
+                    Docent docent = (Docent) docentJSON.toPOJO(jo);
+                    toMain(docent);
+                });
+            } else if (rdbBedrijf.isChecked()){
+                RestApiHelper bedrijfJSON = RestApiHelper
+                        .prepareQuery("bedrijf")
+                        .klasse(Bedrijf.class)
+                        .parameters(Arrays.asList("Bedrijf@bedrijf.nl"))
+                        .build();
+                bedrijfJSON.getObject(jo -> {
+                    Bedrijf bedrijf = (Bedrijf) bedrijfJSON.toPOJO(jo);
+                    toMain(bedrijf);
+                });
+            }
         });
+
+
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
 
+    }
+
+    private void toMain(Account account){
+        TextView lblError = (TextView) findViewById(R.id.lblError);
+        if (account == null){
+            lblError.setText(getString(R.string.wrong_email));
+            return;
+        }
+        if (account.getWachtwoord() == mPasswordView.getText().toString())
+        {
+            Account.currentUser = account;
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+        } else {
+            lblError.setText(getString(R.string.wrong_pass));
+        }
     }
 
     private void populateAutoComplete() {
