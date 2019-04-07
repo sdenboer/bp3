@@ -161,6 +161,7 @@ public class OpdrachtVraagAdd extends ViewFragment {
         boolean valid = Stream.of(opdrachtnaam, minStud, maxStud, eisen, leerjaar, lesvak, deadline, mTags.getText().toString())
                 .allMatch(StringUtils::isNotBlank);
         if (valid && getArguments() != null) {
+            tvm.create(tags);
             ovm.update(opdrachtnaam, minStud, maxStud, eisen, leerjaar, lesvak, deadline, tags, "De opdracht is geupdate", "Er is iets fout gegaan");
             redirectOnSuccess();
         } else if (valid) {
