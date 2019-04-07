@@ -181,7 +181,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 RestApiHelper bedrijfJSON = RestApiHelper
                         .prepareQuery("bedrijf")
                         .klasse(Bedrijf.class)
-                        .parameters(Arrays.asList("Bedrijf@bedrijf.nl"))
+                        .parameters(Arrays.asList(mEmailView.getText().toString()))
                         .build();
                 bedrijfJSON.getObject(jo -> {
                     Bedrijf bedrijf = (Bedrijf) bedrijfJSON.toPOJO(jo);
