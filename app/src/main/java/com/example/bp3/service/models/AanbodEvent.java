@@ -55,13 +55,13 @@ public class AanbodEvent implements Serializable {
     }
 
 
-    public String getPrettyDeadline() {
+    public String getPrettyDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy HH:mm");
         LocalDateTime time =  LocalDateTime.parse (this.datumentijd.replaceAll("\\+(.*)$", ""));
         return formatter.format(time);
     }
 
-    public String toUglyDeadline(Timestamp ts){
+    public String toUglyDate(Timestamp ts){
 
         return String.valueOf(ts);
     }

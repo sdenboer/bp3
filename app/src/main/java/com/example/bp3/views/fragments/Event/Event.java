@@ -1,5 +1,6 @@
 package com.example.bp3.views.fragments.Event;
 
+import android.app.AlertDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -31,8 +32,19 @@ public class Event extends ViewFragment {
         mRecyclerView.setHasFixedSize(true);
         final EventRecyclerViewAdapter adapter = new EventRecyclerViewAdapter();
 
-        AanbodEventViewModel vmEvent = ViewModelProviders.of(this).get(AanbodEventViewModel.class);
-        vmEvent.getAllAanbodevent().observe(this, adapter::setAanbodEvent);
+
+        try{
+            AanbodEventViewModel vmEvent = ViewModelProviders.of(this).get(AanbodEventViewModel.class);
+            vmEvent.getAllAanbodevent().observe(this, adapter::setAanbodEvent);
+
+        }catch (Exception e){
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(view.getContext());
+            dlgAlert.setMessage("Probeer opnieuw");
+            dlgAlert.setTitle("Er is een fout opgetreden");
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+        }
         adapter.setOnItemClickListener(aanbodEvent -> {
 
             FragmentTransaction t = this.getFragmentManager().beginTransaction();
