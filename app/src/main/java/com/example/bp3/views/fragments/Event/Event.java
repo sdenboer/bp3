@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.bp3.R;
+import com.example.bp3.service.models.Account;
+import com.example.bp3.service.models.Student;
 import com.example.bp3.viewmodels.AanbodEventViewModel;
 import com.example.bp3.views.adapters.EventRecyclerViewAdapter;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
@@ -59,11 +61,20 @@ public class Event extends ViewFragment {
 
         FloatingActionButton btnadd = (FloatingActionButton) view.findViewById(R.id.button_addEvent);
         btnadd.setOnClickListener(v -> {
-            FragmentTransaction t = this.getFragmentManager().beginTransaction();
-            Fragment frag = new EventAdd();
-            t.addToBackStack(null);
-            t.replace(R.id.fragment_container, frag);
-            t.commit();
+            if (Account.currentUser instanceof Student){
+                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(view.getContext());
+                dlgAlert.setMessage("Een student kan geen evenementen toevoegen");
+                dlgAlert.setTitle("Student");
+                dlgAlert.setPositiveButton("OK", null);
+                dlgAlert.setCancelable(true);
+                dlgAlert.create().show();
+            }else{
+                FragmentTransaction t = this.getFragmentManager().beginTransaction();
+                Fragment frag = new EventAdd();
+                t.addToBackStack(null);
+                t.replace(R.id.fragment_container, frag);
+                t.commit();
+            }
         });
 
 

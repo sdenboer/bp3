@@ -42,7 +42,7 @@ public class EventRepository extends AbstractRepository {
     }
     public void update(AanbodEvent aanbodEvent) {
         RestApiHelper.prepareQuery(urlModel)
-                //.parameters(Arrays.asList(aanbodEvent.geteventnummer()))
+                .parameters(Arrays.asList(aanbodEvent.geteventnummer()))
                 .build()
                 .update(aanbodEvent, callback -> Log.d("UPDATE", "Het object is geupdate!"),
                         error -> Log.d("Error", error.toString()));

@@ -7,6 +7,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
+/**
+ * @author Koen Franken
+ */
+
 public class Inschrijvingsnummer{
     private int aantalPersonen;
     @SerializedName("bedrijfBedrijfsemail")
