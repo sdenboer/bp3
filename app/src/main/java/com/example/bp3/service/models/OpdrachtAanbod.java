@@ -3,6 +3,7 @@ package com.example.bp3.service.models;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,11 +23,16 @@ public class OpdrachtAanbod implements Serializable {
     @SerializedName("bedrijfEmail")
     private Bedrijf bedrijf;
     private String beschrijving;
+    @SerializedName("teamCollection")
+    private ArrayList<Team> teams = new ArrayList<>();
 
-    public OpdrachtAanbod(int id, Opdracht opdracht, Bedrijf bedrijf, String beschrijving) {
-        this.id = id;
+    public OpdrachtAanbod(Opdracht opdracht, Bedrijf bedrijf, String beschrijving) {
         this.opdracht = opdracht;
         this.bedrijf = bedrijf;
         this.beschrijving = beschrijving;
+    }
+
+    public void opdrachtInschrijving(Team team) {
+        this.teams.add(team);
     }
 }

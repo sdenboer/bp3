@@ -19,10 +19,14 @@ public class Opdracht extends Activiteit {
     @SerializedName("docentEmail")
     private Docent docent;
 
-    public Opdracht(int leerjaar, String opdrachtNaam, String lesvak, String eisen) {
+    public Opdracht(int leerjaar, String opdrachtNaam, String lesvak, String eisen, int aantStudMin, int aantStudMax, Docent docent, String deadline) {
         this.leerjaar = leerjaar;
         this.opdrachtNaam = opdrachtNaam;
         this.lesvak = lesvak;
         this.eisen = eisen;
+        super.aantStudMax = aantStudMax;
+        super.aantStudMin = aantStudMin;
+        this.docent = docent;
+        super.deadline = deadline;
     }
 }

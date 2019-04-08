@@ -24,6 +24,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -45,7 +46,6 @@ import com.example.bp3.service.models.Bedrijf;
 import com.example.bp3.service.models.Docent;
 import com.example.bp3.service.models.Student;
 import com.example.bp3.service.repository.RestApiHelper;
-import com.example.bp3.views.fragments.MyStuffView;
 
 import static android.Manifest.permission.READ_CONTACTS;
 /**
@@ -105,48 +105,46 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }*/
 
             ////////////////TEST ACCOUNTS////////////////////////////
-            //Test Student ophalen
-            RestApiHelper studentJSON = RestApiHelper
-                    .prepareQuery("student")
-                    .klasse(Student.class)
-                    .parameters(Arrays.asList("jklaas@student.avans.nl"))
-                    .build();
-            studentJSON.getObject(jo -> {
-                Student student = (Student) studentJSON.toPOJO(jo);
-                Account.currentUser = student;
-                Intent i = new Intent(v.getContext(), MainActivity.class);
-                startActivity(i);
-            });
+//            Test Student ophalen
+//            RestApiHelper studentJSON = RestApiHelper
+//                    .prepareQuery("student")
+//                    .klasse(Student.class)
+//                    .parameters(Arrays.asList("thom@avans.nl"))
+//                    .build();
+//            studentJSON.getObject(jo -> {
+//                Student student = (Student) studentJSON.toPOJO(jo);
+//                Account.currentUser = student;
+//                Intent i = new Intent(v.getContext(), MainActivity.class);
+//                startActivity(i);
+//            }, error -> Log.d("Error", error.toString()));
 
-            /*
-            //Test Docent ophalen
-            RestApiHelper docentJSON = RestApiHelper
-                    .prepareQuery("docent")
-                    .klasse(Docent.class)
-                    .parameters(Arrays.asList("BKatwijk@avans.nl"))
-                    .build();
-            docentJSON.getObject(jo -> {
-                Docent docent = (Docent) docentJSON.toPOJO(jo);
-                Account.currentUser = docent;
-                Intent i = new Intent(v.getContext(), MainActivity.class);
-                startActivity(i);
 
-            });
-            */
-            /*
+//            RestApiHelper docentJSON = RestApiHelper
+//                    .prepareQuery("docent")
+//                    .klasse(Docent.class)
+//                    .parameters(Arrays.asList("BKatwijk@avans.nl"))
+//                    .build();
+//            docentJSON.getObject(jo -> {
+//                Docent docent = (Docent) docentJSON.toPOJO(jo);
+//                Account.currentUser = docent;
+//                Intent i = new Intent(v.getContext(), MainActivity.class);
+//                startActivity(i);
+//
+//            }, error -> Log.d("Error", error.toString()));
+
             //Test Bedrijf ophalen
             RestApiHelper bedrijfJSON = RestApiHelper
                     .prepareQuery("bedrijf")
                     .klasse(Bedrijf.class)
-                    .parameters(Arrays.asList("Bedrijf@bedrijf.nl"))
+                    .parameters(Arrays.asList("ict@community.nl"))
                     .build();
             bedrijfJSON.getObject(jo -> {
                 Bedrijf bedrijf = (Bedrijf) bedrijfJSON.toPOJO(jo);
                 Account.currentUser = bedrijf;
                 Intent i = new Intent(v.getContext(), MainActivity.class);
                 startActivity(i);
-            });
-            */
+            }, error -> Log.d("Error", error.toString()));
+
             /////////////////////////////////////////////////////
 
         });

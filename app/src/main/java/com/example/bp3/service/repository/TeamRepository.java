@@ -4,43 +4,38 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
 
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.bp3.service.models.OpdrachtAanbod;
 import com.example.bp3.service.models.Team;
-import com.google.gson.JsonArray;
 
-import org.json.JSONArray;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-public class TeamRepository extends AbstractRepository{
+/**
+ * @author sven
+ */
+public class TeamRepository extends AbstractRepository {
 
     private RestApiHelper restApiHelper;
     private static TeamRepository teamRepository;
 
 
     @Override
-    protected String getUrlModel() {
+    protected String setUrlModel() {
         return "team";
     }
 
-    public void create(Team team) {
+    public void create(Team team, OpdrachtAanbod opdrachtAanbod) {
         RestApiHelper.prepareQuery(urlModel)
                 .build()
-                .post(team, response -> Log.d("POST", "Het object zit in de database!"));
+                .post(team, response -> {
+                    opdrachtAanbod.opdrachtInschrijving(team);
+                    OpdrachtAanbodRepository.getInstance().update(opdrachtAanbod);
+                }, error -> Log.e("Webservice Error", error.toString()));
     }
 
     public LiveData<List<Team>> beschikbareTeams(int opdrachtId) {
         final MutableLiveData<List<Team>> data = new MutableLiveData<>();
         restApiHelper = RestApiHelper.prepareQuery(urlModel).klasse(Team[].class).parameters(Arrays.asList("find", opdrachtId)).build();
-        restApiHelper.getArray(jsonArray -> {
-            JSONArray t = jsonArray;
-            Log.d("JO", String.valueOf(t.length()));
-                        data.setValue(Arrays.asList((Team[]) restApiHelper.toPOJO(jsonArray)));
-        });
+        restApiHelper.getArray(jsonArray -> data.setValue(Arrays.asList((Team[]) restApiHelper.toPOJO(jsonArray))), error -> Log.e("Webservice Error", error.toString()));
         return data;
     }
 
@@ -60,14 +55,14 @@ public class TeamRepository extends AbstractRepository{
         RestApiHelper.prepareQuery(urlModel)
                 .parameters(Arrays.asList(team.getTeamNaam()))
                 .build()
-                .update(team, callback -> Log.d("UPDATE", "Het object is geupdate!"));
+                .update(team, callback -> Log.d("UPDATE", "Het object is geupdate!"), error -> Log.e("Webservice Error", error.toString()));
     }
 
     public void delete(Team team) {
-        RestApiHelper.prepareQuery("opdrachtaanbod")
+        RestApiHelper.prepareQuery(urlModel)
                 .parameters(Arrays.asList(team.getTeamNaam()))
                 .build()
-                .delete(callback -> Log.d("DELETE", "Het object is verwijderd!"));
+                .delete(callback -> Log.d("DELETE", "Het object is verwijderd!"), error -> Log.e("Webservice Error", error.toString()));
     }
 
     public synchronized static TeamRepository getInstance() {
@@ -76,7 +71,6 @@ public class TeamRepository extends AbstractRepository{
         }
         return teamRepository;
     }
-
 
 
 }
