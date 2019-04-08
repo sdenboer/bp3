@@ -24,6 +24,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -46,7 +47,6 @@ import com.example.bp3.service.models.Bedrijf;
 import com.example.bp3.service.models.Docent;
 import com.example.bp3.service.models.Student;
 import com.example.bp3.service.repository.RestApiHelper;
-import com.example.bp3.views.fragments.MyStuffView;
 
 import org.w3c.dom.Text;
 
@@ -94,9 +94,8 @@ public class LoginActivity extends AppCompatActivity {
                 attemptLogin();
             }*/
 
-
             ////////////////TEST ACCOUNTS////////////////////////////
-            /*
+
             if (rdbStudent.isChecked()) {
                 //Test Student ophalen
                 RestApiHelper teststudentJSON = RestApiHelper
@@ -109,7 +108,8 @@ public class LoginActivity extends AppCompatActivity {
                     Account.currentUser = student;
                     Intent i = new Intent(v.getContext(), MainActivity.class);
                     startActivity(i);
-                });
+
+                }, error -> Log.d("Error", error.toString()));
             }else if (rdbDocent.isChecked()) {
                 //Test Docent ophalen
                 RestApiHelper testdocentJSON = RestApiHelper
@@ -123,22 +123,23 @@ public class LoginActivity extends AppCompatActivity {
                     Intent i = new Intent(v.getContext(), MainActivity.class);
                     startActivity(i);
 
-                });
+
+                }, error -> Log.d("Error", error.toString()));
             } else if (rdbBedrijf.isChecked()) {
                 //Test Bedrijf ophalen
                 RestApiHelper testbedrijfJSON = RestApiHelper
                         .prepareQuery("bedrijf")
                         .klasse(Bedrijf.class)
-                        .parameters(Arrays.asList("Bedrijf@bedrijf.nl"))
+                        .parameters(Arrays.asList("ict@community.nl"))
                         .build();
                 testbedrijfJSON.getObject(jo -> {
                     Bedrijf bedrijf = (Bedrijf) testbedrijfJSON.toPOJO(jo);
                     Account.currentUser = bedrijf;
                     Intent i = new Intent(v.getContext(), MainActivity.class);
                     startActivity(i);
-                });
+
+            }, error -> Log.d("Error", error.toString()));
             }
-            */
             /////////////////////////////////////////////////////
 
             if (rdbStudent.isChecked()){
@@ -150,7 +151,8 @@ public class LoginActivity extends AppCompatActivity {
                 studentJSON.getObject(jo -> {
                     Student student = (Student) studentJSON.toPOJO(jo);
                     toMain(student);
-                });
+                }, error -> Log.d("Error", error.toString()));
+
             } else if (rdbDocent.isChecked()){
                 RestApiHelper docentJSON = RestApiHelper
                         .prepareQuery("docent")
@@ -160,7 +162,8 @@ public class LoginActivity extends AppCompatActivity {
                 docentJSON.getObject(jo -> {
                     Docent docent = (Docent) docentJSON.toPOJO(jo);
                     toMain(docent);
-                });
+                }, error -> Log.d("Error", error.toString()));
+
             } else if (rdbBedrijf.isChecked()){
                 RestApiHelper bedrijfJSON = RestApiHelper
                         .prepareQuery("bedrijf")
@@ -170,7 +173,8 @@ public class LoginActivity extends AppCompatActivity {
                 bedrijfJSON.getObject(jo -> {
                     Bedrijf bedrijf = (Bedrijf) bedrijfJSON.toPOJO(jo);
                     toMain(bedrijf);
-                });
+                }, error -> Log.d("Error", error.toString()));
+
             }
 
         });

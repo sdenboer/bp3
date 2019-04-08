@@ -3,7 +3,9 @@
     <color name="colorPrimary">#666666</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorNavIcon">#666666</color>
+    <color name="colorNavIcon">#060606</color>
     <color name="colorNavText">#666666</color>
     <color name="colorBackground">#EFF5F8</color>
+    <color name="buttonBlue">#2C98F0</color>
+    <color name="white">#FFFFFF</color>
 </resources>

@@ -3,6 +3,8 @@ package com.example.bp3.service.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Setter;
 import lombok.Getter;
 
@@ -12,14 +14,19 @@ import lombok.Getter;
 
 @Setter
 @Getter
-public class Student extends Account implements Parcelable {
+public class Student extends Account {
     private int leerjaar;
     private Opleiding opleiding;
+    @SerializedName("studentEmail")
+    private String email;
+    private String naam;
 
     public Student(String email, String wachtwoord, String naam, String telefoon, int leerjaar, Opleiding opleiding) {
-        super(email, wachtwoord, naam, telefoon);
+        super(wachtwoord, telefoon);
         this.leerjaar = leerjaar;
         this.opleiding = opleiding;
+        this.email = email;
+        this.naam = naam;
     }
 
     public boolean login (String email, String wachtwoord){
@@ -47,15 +54,5 @@ public class Student extends Account implements Parcelable {
         //pas account aan met de doorgegeven email met de data in het object
         //stuur boolean terug op succes
         return false;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
     }
 }

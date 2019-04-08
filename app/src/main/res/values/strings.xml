@@ -30,11 +30,27 @@
     <string name="projecten_opdrachten">Opdrachten</string>
     <string name="projecten_opdrachten_details">Opdracht Details</string>
     <string name="projecten_challenges">Challenges</string>
-    <string name="projecten_mystuff">My Stuff</string>
+    <string name="projecten_mystuff">Mijn activiteiten</string>
+    <string name="opdracht_toevoegen">Opdracht Toevoegen</string>
 
     <!-- EVENTS-->
     <string name="events_event">Events</string>
     <string name="event_aanvragen">Events Aanvragen</string>
+    <string name="event_page">Evenement</string>
+    <string name="event_add">Evenement toevoegen</string>
+    <string name="event_addEvent">Vul de gegeven in: </string>
+    <string name="event_dropdownsoort">Kies een soort: </string>
+    <string name="event_inschrijven">Inschrijven voor evenement</string>
+    <string name="event_terugbtn">Terug</string>
+    <string name="event_inschrijfbtn">Inschrijven</string>
+    <string name="eventpage_naam">Naam: </string>
+    <string name="eventpage_soort">Soort: </string>
+    <string name="eventpage_datum">Datum: </string>
+    <string name="eventpage_locatie">Locatie: </string>
+    <string name="eventpage_aantalp">Maximaal aantal personen: </string>
+    <string name="eventpage_contact">Orginisator: </string>
+    <string name="eventpage_omschrijving">Omschrijving: </string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -45,6 +61,20 @@
     <string name="placeholder">placeholder</string>
     <string name="contact">contact</string>
     <string name="teams">Teams</string>
+    <string name="team_toevoegen">team toevoegen</string>
+    <string name="mijn_activiteiten">Mijn activiteiten</string>
+    <string name="mijn_challenges">Mijn challenges</string>
+    <string name="mijn_opdrachten">Mijn Opdrachten</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+
+
+    <string-array name="leerjaar_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -60,5 +90,10 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+<<<<<<< HEAD
     <string name="title_activity_aanmaken_account">AanmakenAccount</string>
+=======
+    <string name="bekijk">Bekijk</string>
+    <string name="bewerken">Bewerken</string>
+>>>>>>> 4ea51a7c2966a5270383036dd3ab3700603133b9
 </resources>

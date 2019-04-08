@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_SaveEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="30dp"
+        android:src="@drawable/ic_save"
+        app:backgroundTint="@color/colorNavIcon" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_CloseEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_margin="30dp"
+        android:src="@drawable/ic_close"
+        app:backgroundTint="@color/colorNavIcon" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewAddevent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/event_addEvent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <EditText
+            android:id="@+id/editTextEventNaam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Naam" />
+
+        <EditText
+            android:id="@+id/editTextEventLocatie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Locatie" />
+
+        <EditText
+            android:id="@+id/editTextEventDatumtijd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Datum en tijd" />
+
+        <EditText
+            android:id="@+id/editTextEventAantalp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:hint="Max aantal personen" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Soort evenement:" />
+
+        <Spinner
+            android:id="@+id/spinnerSoort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dialog"
+            android:prompt="@string/event_dropdownsoort"
+            />
+
+        <EditText
+            android:id="@+id/editTextEventOmschrijving"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Omschrijving"
+            />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
