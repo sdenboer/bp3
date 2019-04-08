@@ -36,6 +36,21 @@
     <!-- EVENTS-->
     <string name="events_event">Events</string>
     <string name="event_aanvragen">Events Aanvragen</string>
+    <string name="event_page">Evenement</string>
+    <string name="event_add">Evenement toevoegen</string>
+    <string name="event_addEvent">Vul de gegeven in: </string>
+    <string name="event_dropdownsoort">Kies een soort: </string>
+    <string name="event_inschrijven">Inschrijven voor evenement</string>
+    <string name="event_terugbtn">Terug</string>
+    <string name="event_inschrijfbtn">Inschrijven</string>
+    <string name="eventpage_naam">Naam: </string>
+    <string name="eventpage_soort">Soort: </string>
+    <string name="eventpage_datum">Datum: </string>
+    <string name="eventpage_locatie">Locatie: </string>
+    <string name="eventpage_aantalp">Maximaal aantal personen: </string>
+    <string name="eventpage_contact">Orginisator: </string>
+    <string name="eventpage_omschrijving">Omschrijving: </string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

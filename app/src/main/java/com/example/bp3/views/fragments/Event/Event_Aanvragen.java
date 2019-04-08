@@ -1,4 +1,4 @@
-package com.example.bp3.views.fragments;
+package com.example.bp3.views.fragments.Event;
 
 
 import android.os.Bundle;
@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.bp3.R;
 import com.example.bp3.views.fragmentsHelpers.ViewFragment;
+
+/**
+ * @author Koen Franken
+ */
 
 public class Event_Aanvragen extends ViewFragment {
     @Override
