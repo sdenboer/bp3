@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -35,14 +36,16 @@ import java.util.List;
  * @author Koen Franken
  */
 
-public class EventAdd extends ViewFragment {
+public class EventAdd extends ViewFragment{
     private EditText txtnaam, txtlocatie, txtdatumentijd, txtaantalp, txtomschrijving, txtsoort;
     private List<String> items = new ArrayList<>();
-    private String keuze = "Workshop";
+    private List<String> itemst = new ArrayList<>();
+    private String keuze;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_event_add, container, false);
+        itemst = (List) getArguments().getSerializable("soorten");
 
         txtnaam = (EditText) view.findViewById(R.id.editTextEventNaam);
         txtlocatie = (EditText) view.findViewById(R.id.editTextEventLocatie);
@@ -58,11 +61,20 @@ public class EventAdd extends ViewFragment {
                     List<EventSoort> eventSoort = Arrays.asList((EventSoort[]) soortJSON.toPOJO(ja));
                     eventSoort.forEach(soort -> items.add(soort.getSoort()));
                 },
-            error -> Log.d("Error", error.toString()));
+                error -> Log.d("Error", error.toString()));
 
         Spinner dropdownSoort = (Spinner) view.findViewById(R.id.spinnerSoort);
-        ArrayAdapter<String>adapter = new ArrayAdapter<String>(inflater.getContext(),android.R.layout.simple_spinner_item,items);
+        ArrayAdapter<String>adapter = new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_spinner_item,itemst);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdownSoort.setAdapter(adapter);
+        dropdownSoort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                keuze =  parent.getItemAtPosition(position).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
 
         FloatingActionButton btnclose = (FloatingActionButton) view.findViewById(R.id.button_CloseEvent);
         FloatingActionButton btnsave = (FloatingActionButton) view.findViewById(R.id.button_SaveEvent);

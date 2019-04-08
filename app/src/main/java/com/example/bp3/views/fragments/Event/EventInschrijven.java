@@ -57,43 +57,43 @@ public class EventInschrijven extends ViewFragment {
                     dlgAlert.setCancelable(true);
                     dlgAlert.create().show();
                 }else{
-                        if (Account.currentUser instanceof Docent) {
-                            Docent docent = (Docent) Account.currentUser;
-                            Inschrijvingsnummer inschrijvingsnummer = new Inschrijvingsnummer(aantal,event);
-                            inschrijvingsnummer.setDocent(docent);
-                            InschrijvingEventViewModel vmInsch = ViewModelProviders.of(this).get(InschrijvingEventViewModel.class);
-                            vmInsch.create(inschrijvingsnummer);
+                    if (Account.currentUser instanceof Docent) {
+                        Docent docent = (Docent) Account.currentUser;
+                        Inschrijvingsnummer inschrijvingsnummer = new Inschrijvingsnummer(aantal,event);
+                        inschrijvingsnummer.setDocent(docent);
+                        InschrijvingEventViewModel vmInsch = ViewModelProviders.of(this).get(InschrijvingEventViewModel.class);
+                        vmInsch.create(inschrijvingsnummer);
 
-                        } else if (Account.currentUser instanceof Student) {
-                            Student student = (Student) Account.currentUser;
-                            Inschrijvingsnummer inschrijvingsnummer = new Inschrijvingsnummer(aantal,event);
-                            inschrijvingsnummer.setStudent(student);
-                            InschrijvingEventViewModel vmInsch = ViewModelProviders.of(this).get(InschrijvingEventViewModel.class);
-                            vmInsch.create(inschrijvingsnummer);
+                    } else if (Account.currentUser instanceof Student) {
+                        Student student = (Student) Account.currentUser;
+                        Inschrijvingsnummer inschrijvingsnummer = new Inschrijvingsnummer(aantal,event);
+                        inschrijvingsnummer.setStudent(student);
+                        InschrijvingEventViewModel vmInsch = ViewModelProviders.of(this).get(InschrijvingEventViewModel.class);
+                        vmInsch.create(inschrijvingsnummer);
 
-                        } else if (Account.currentUser instanceof Bedrijf) {
-                            Bedrijf bedrijf = (Bedrijf) Account.currentUser;
-                            Inschrijvingsnummer inschrijvingsnummer = new Inschrijvingsnummer(aantal,event);
-                            inschrijvingsnummer.setBedrijf(bedrijf);
-                            InschrijvingEventViewModel vmInsch = ViewModelProviders.of(this).get(InschrijvingEventViewModel.class);
-                            vmInsch.create(inschrijvingsnummer);
-                        }
-                        AanbodEventViewModel vmaan = ViewModelProviders.of(this).get(AanbodEventViewModel.class);
-                        event.setAantalPersonen(event.getAantalPersonen()- aantal);
-                        vmaan.update(event);
+                    } else if (Account.currentUser instanceof Bedrijf) {
+                        Bedrijf bedrijf = (Bedrijf) Account.currentUser;
+                        Inschrijvingsnummer inschrijvingsnummer = new Inschrijvingsnummer(aantal,event);
+                        inschrijvingsnummer.setBedrijf(bedrijf);
+                        InschrijvingEventViewModel vmInsch = ViewModelProviders.of(this).get(InschrijvingEventViewModel.class);
+                        vmInsch.create(inschrijvingsnummer);
+                    }
+                    AanbodEventViewModel vmaan = ViewModelProviders.of(this).get(AanbodEventViewModel.class);
+                    event.setAantalPersonen(event.getAantalPersonen()- aantal);
+                    vmaan.update(event);
 
-                        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(view.getContext());
-                        dlgAlert.setMessage("U hebt zich ingrschreven voor " + event.getNaam());
-                        dlgAlert.setTitle("Ingeschreven");
-                        dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    AlertDialog.Builder dlgAlert = new AlertDialog.Builder(view.getContext());
+                    dlgAlert.setMessage("U hebt zich ingrschreven voor " + event.getNaam());
+                    dlgAlert.setTitle("Ingeschreven");
+                    dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             FragmentManager fm = getActivity().getSupportFragmentManager();
                             fm.popBackStack();
                         }
                     });
-                        dlgAlert.setCancelable(true);
-                        dlgAlert.create().show();
+                    dlgAlert.setCancelable(true);
+                    dlgAlert.create().show();
                 }
             }catch (Exception e){
                 AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(view.getContext());

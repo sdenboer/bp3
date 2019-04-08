@@ -39,16 +39,16 @@ public class EventPage extends ViewFragment{
         TextView txtContact = (TextView) view.findViewById(R.id.textContactPevent);
 
         if(event.getAantalPersonen() < 1){
-            //btnInschrijf.setEnabled(false);
+            btnInschrijf.setEnabled(false);
             txtAantalp.setText("Sorry dit evenement is VOL");
         }
 
         try {
             txtContact.setText("Contactpersoon: " + event.getBedrijf().getEmail());
-        }catch (Exception e){System.out.println("Geen bedrijf");}
+        }catch (Exception e){}
         try {
             txtContact.setText("Contactpersoon: " + event.getDocent().getEmail());
-        }catch (Exception e){System.out.println("Geen docent");}
+        }catch (Exception e){}
         TextView txtOmschrijf = (TextView) view.findViewById(R.id.textOmschrijvingevent);
         txtOmschrijf.setText("Omschrijving: " +  event.getOmschrijving());
 
