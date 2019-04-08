@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
             //te vervangen met de test accounts.
             //Als de test accounts zijn ingeschakelt maakt het niet uit wat je invult, zolang je
             //de juiste radiobutton aan hebt geklikt log je in als student, docent of bedrijf.
-            /*
+
             if (rdbStudent.isChecked()) {
                 //Test Student ophalen
                 RestApiHelper teststudentJSON = RestApiHelper
@@ -144,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }, error -> Log.d("Error", error.toString()));
             }
-            */
+
             /////////////////////////////////////////////////////
 
             //Zet dit onderdeel in comments als je de test accounts aan hebt staan
