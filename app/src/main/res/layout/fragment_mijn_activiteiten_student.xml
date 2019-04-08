@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="10dp"
+    tools:context=".views.fragments.MijnActiviteiten.MijnActiviteitenStudent">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/mijn_activiteiten_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mijn_activiteiten"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/mijn_opdrachten_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mijn opdrachten"
+        android:layout_below="@+id/mijn_activiteiten_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:id="@+id/opdracht_lesvak_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mijn_opdrachten_title"
+        />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/mijn_challenges_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mijn_challenges"
+        android:layout_below="@+id/opdracht_lesvak_recycler"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:id="@+id/challenge_recycler"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/mijn_challenges_title"-->
+        <!--/>-->
+
+
+
+</RelativeLayout>

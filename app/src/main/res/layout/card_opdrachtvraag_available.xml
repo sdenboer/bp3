@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:text="Placeholder"
+                android:id="@+id/tag_title"
+                android:textAllCaps="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="Placeholder"
+                android:layout_below="@+id/tag_title"
+                android:id="@+id/tag_niveau"
+                android:textAllCaps="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="Placeholder"
+                android:layout_below="@id/tag_title"
+                android:paddingLeft="10dp"
+                android:layout_toRightOf="@id/tag_niveau"
+                android:id="@+id/tag_instelling"
+                android:textAllCaps="true"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opdracht aanmaken"
+                android:background="@null"
+                android:textColor="#2C98F0"
+                android:layout_below="@id/tag_niveau"
+                android:id="@+id/tag_opdracht_add_btn"
+                android:textAllCaps="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="Placeholder"
+                android:layout_below="@id/tag_opdracht_add_btn"
+                android:paddingBottom="30dp"
+                android:id="@+id/tag_eisen"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:text="Placeholder"
+                android:layout_below="@id/tag_eisen"
+
+                android:id="@+id/tag_min"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:text="Placeholder"
+                android:layout_below="@id/tag_min"
+
+                android:id="@+id/tag_max"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:text="Placeholder"
+                android:layout_below="@id/tag_max"
+
+                android:id="@+id/tag_deadline"
+                />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</android.support.v7.widget.CardView>

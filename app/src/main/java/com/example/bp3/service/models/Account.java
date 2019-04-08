@@ -1,5 +1,6 @@
 package com.example.bp3.service.models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Getter;
@@ -8,19 +9,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class Account {
-    @SerializedName(value="studentEmail", alternate = {"bedrijfsemail", "docentEmail"})
-    protected String email;
     @SerializedName("wachtwoord")
     protected String wachtwoord;
-    @SerializedName(value = "naam", alternate = {"bedrijfsnaam"} )
-    protected  String naam;
     @SerializedName("telefoon")
     protected  String telefoon;
 
-    public Account(String email, String wachtwoord, String naam, String telefoon) {
-        this.email = email;
+    public Account(String wachtwoord, String telefoon) {
         this.wachtwoord = wachtwoord;
-        this.naam = naam;
         this.telefoon = telefoon;
     }
 
@@ -28,6 +23,6 @@ public abstract class Account {
     public abstract boolean toevoegenAccount();
 
     public abstract boolean bewerkenAccount(String email);
-    static Account currentUser;
+    public static Account currentUser;
 }
 

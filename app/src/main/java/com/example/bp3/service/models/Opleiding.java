@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import lombok.Setter;
 import lombok.Getter;
 
+/**
+ * @author Thom
+ */
+
 @Setter
 @Getter
 
@@ -16,17 +20,21 @@ public class Opleiding {
     @SerializedName("lesvakCollection")
     private ArrayList<Lesvak> lesvakken;
 
-    public Opleiding(String niveau, OpleidingPK opleidingPK, ArrayList<Lesvak> lesvakken) {
+    public Opleiding(String niveau, String onderwijsinstelling, String opleidingsnaam, ArrayList<Lesvak> lesvakken) {
+        opleidingPK = new OpleidingPK();
         this.niveau = niveau;
-        this.opleidingPK = opleidingPK;
+        this.opleidingPK.onderwijsinstelling = onderwijsinstelling;
+        this.opleidingPK.opleidingsnaam = opleidingsnaam;
         this.lesvakken = lesvakken;
     }
 
+    @Getter
+    @Setter
     public class OpleidingPK {
         @SerializedName("onderwijsinstelling")
-        private String onderwijsinstelling;
+        public String onderwijsinstelling;
         @SerializedName("opleidingsnaam")
-        private String opleidingsnaam;
+        public String opleidingsnaam;
     }
 
 }
