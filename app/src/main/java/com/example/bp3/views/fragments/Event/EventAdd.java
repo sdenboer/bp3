@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +52,10 @@ public class EventAdd extends ViewFragment {
                 .klasse(EventSoort[].class)
                 .build();
         soortJSON.getArray(ja -> {
-            List<EventSoort> eventSoort = Arrays.asList((EventSoort[]) soortJSON.toPOJO(ja));
-                  eventSoort.forEach(soort -> items.add(soort.getSoort()));
-        });
+                    List<EventSoort> eventSoort = Arrays.asList((EventSoort[]) soortJSON.toPOJO(ja));
+                    eventSoort.forEach(soort -> items.add(soort.getSoort()));
+                },
+            error -> Log.d("Error", error.toString()));
 
         Spinner dropdownSoort = (Spinner) view.findViewById(R.id.spinnerSoort);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(inflater.getContext(),android.R.layout.simple_spinner_item,items);
