@@ -43,7 +43,7 @@ public class RestApiHelper {
     private String urlModel;
     private List<Object> parameters;
     private static RequestQueue requestQueue;
-    private final String ipAdress = "145.49.108.94";
+    private final String ipAdress = "145.49.70.95";
 
     //APPLICATION ONLOAD
     /**
