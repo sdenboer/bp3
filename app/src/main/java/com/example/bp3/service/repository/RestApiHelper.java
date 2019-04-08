@@ -196,11 +196,7 @@ public class RestApiHelper {
      */
     private String buildURL() {
         StringBuilder urlBuilder = new StringBuilder();
-<<<<<<< HEAD
-        urlBuilder.append("http://145.49.94.245:8080/bp3webservice/webresources/models.").append(this.urlModel);
-=======
         urlBuilder.append("http://").append(ipAdress).append(":8080/bp3webservice/webresources/models.").append(this.urlModel);
->>>>>>> 4ea51a7c2966a5270383036dd3ab3700603133b9
         if (parameters != null) {
             parameters.forEach(value -> urlBuilder.append("/").append(value));
         }

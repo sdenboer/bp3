@@ -95,7 +95,11 @@ public class LoginActivity extends AppCompatActivity {
             }*/
 
             ////////////////TEST ACCOUNTS////////////////////////////
-
+            //Verwijder de comments en zet het onderstaande blok in comments om de login
+            //te vervangen met de test accounts.
+            //Als de test accounts zijn ingeschakelt maakt het niet uit wat je invult, zolang je
+            //de juiste radiobutton aan hebt geklikt log je in als student, docent of bedrijf.
+            /*
             if (rdbStudent.isChecked()) {
                 //Test Student ophalen
                 RestApiHelper teststudentJSON = RestApiHelper
@@ -140,8 +144,10 @@ public class LoginActivity extends AppCompatActivity {
 
             }, error -> Log.d("Error", error.toString()));
             }
+            */
             /////////////////////////////////////////////////////
 
+            //Zet dit onderdeel in comments als je de test accounts aan hebt staan
             if (rdbStudent.isChecked()){
                 RestApiHelper studentJSON = RestApiHelper
                         .prepareQuery("student")
@@ -176,6 +182,7 @@ public class LoginActivity extends AppCompatActivity {
                 }, error -> Log.d("Error", error.toString()));
 
             }
+            /////////////////////////////////////////////////
 
         });
 
@@ -193,6 +200,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void toMain(Account account){
+        //Check de ingevulde waardes en ga naar het hoofdmenu als deze correct zijn
         TextView lblError = (TextView) findViewById(R.id.lblError);
         if (account == null){
             lblError.setText(getString(R.string.wrong_email));
@@ -208,11 +216,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
     private void attemptLogin() {
 
         // Reset errors.

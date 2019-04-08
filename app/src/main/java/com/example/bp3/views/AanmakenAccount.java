@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
+import com.android.volley.VolleyError;
 import com.example.bp3.R;
 import com.example.bp3.service.models.Bedrijf;
 import com.example.bp3.service.models.Docent;
@@ -70,7 +71,7 @@ public class AanmakenAccount extends AppCompatActivity {
                     Student student = new Student(txtEmail.getText().toString(), txtWachtwoord.getText().toString(),
                             txtNaam.getText().toString(), txtTelefoon.getText().toString(), Integer.parseInt(txtLeerjaar.getText().toString()), opleiding);
                     maakStudent(student);
-                });
+                }, error -> Log.d("Error", error.toString()));
 
             } else if (rdbDocent.isChecked()){
                 /*
@@ -104,17 +105,17 @@ public class AanmakenAccount extends AppCompatActivity {
     private void maakStudent(Student account){
         RestApiHelper.prepareQuery("student")
                 .build()
-                .post(account, response -> Log.d("POST", "Het object is toegevoegd aan de database."));
+                .post(account, response -> Log.d("POST", "Het object is toegevoegd aan de database."), error -> Log.e("Webservice Error", error.toString()));
     }
 
     private void maakDocent(Docent account){
         RestApiHelper.prepareQuery("docent")
                 .build()
-                .post(account, response -> Log.d("POST", "Het object is toegevoegd aan de database."));
+                .post(account, response -> Log.d("POST", "Het object is toegevoegd aan de database."), error -> Log.e("Webservice Error", error.toString()));
     }
     private void maakBedrijf(Bedrijf account){
         RestApiHelper.prepareQuery("bedrijf")
                 .build()
-                .post(account, response -> Log.d("POST", "Het object is toegevoegd aan de database."));
+                .post(account, response -> Log.d("POST", "Het object is toegevoegd aan de database."), error -> Log.e("Webservice Error", error.toString()));
     }
 }

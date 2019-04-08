@@ -90,10 +90,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-<<<<<<< HEAD
     <string name="title_activity_aanmaken_account">AanmakenAccount</string>
-=======
     <string name="bekijk">Bekijk</string>
     <string name="bewerken">Bewerken</string>
->>>>>>> 4ea51a7c2966a5270383036dd3ab3700603133b9
 </resources>
