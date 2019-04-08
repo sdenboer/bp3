@@ -30,28 +30,14 @@ public class Bedrijf extends Account {
     }
 
     public boolean login (String email, String wachtwoord){
-        //controleer email en wachtwoord combinatie
-        //stuur boolean terug op match
-
-        /*
-        String naam, telefoon, email_contactpersoon, telefoon_contactpersoon;
-        Account account = new Bedrijf(email, wachtwoord, naam, telefoon, email_contactpersoon, telefoon_contactpersoon);
-
-        currentUser = account;
-        */
         return false;
     }
 
     public boolean toevoegenAccount(){
-        //voeg account toe met informatie uit het object
-        //stuur boolean terug op succes
-
         return false;
     }
 
     public boolean bewerkenAccount(String email){
-        //pas account aan met de doorgegeven email met de data in het object
-        //stuur boolean terug op succes
         return false;
     }
 }

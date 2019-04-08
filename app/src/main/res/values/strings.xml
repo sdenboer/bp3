@@ -78,9 +78,11 @@
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="prompt_password">Wachtwoord</string>
+    <string name="action_sign_in">Meld je aan of registreer</string>
+    <string name="action_sign_in_short">Aanmelden</string>
+    <string name="wrong_pass">Uw wachtwoord komt niet overeen met de ingevulde email</string>
+    <string name="wrong_email">Uw email wordt niet door de database herkend. Heeft u nog geen account? Klik dan op Account Aanmaken.</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -88,6 +90,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_aanmaken_account">AanmakenAccount</string>
     <string name="bekijk">Bekijk</string>
     <string name="bewerken">Bewerken</string>
 </resources>

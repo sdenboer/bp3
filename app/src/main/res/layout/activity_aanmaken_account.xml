@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.AanmakenAccount">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/rdbStudent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Student" />
+
+                <RadioButton
+                    android:id="@+id/rdbDocent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Docent" />
+
+                <RadioButton
+                    android:id="@+id/rdbBedrijf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Bedrijf" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/prompt_email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/txtWachtwoord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/prompt_password"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/txtNaam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Naam"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/txtTelefoon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Telefoonnummer"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/lblStu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(Studenten)"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/txtLeerjaar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Leerjaar"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/lblDocStu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(Docenten en Studenten)"
+                android:textSize="24sp" />
+
+            <Spinner
+                android:id="@+id/spnOnderwijs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/spnOpleiding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/lblBed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(Bedrijven)"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/txtContactEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Email contactpersoon"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/txtContactTelefoon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Telefoon contactpersoon"
+                android:inputType="phone" />
+
+            <Button
+                android:id="@+id/btnAanmaken"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account Aanmaken" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
