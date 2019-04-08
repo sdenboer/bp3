@@ -178,7 +178,7 @@ public class RestApiHelper {
      */
     private String buildURL() {
         StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append("http://145.49.70.95:8080/bp3webservice/webresources/models.").append(this.urlModel);
+        urlBuilder.append("http://145.49.94.245:8080/bp3webservice/webresources/models.").append(this.urlModel);
         if (parameters != null) {
             parameters.forEach(value -> urlBuilder.append("/").append(value));
         }

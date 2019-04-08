@@ -18,6 +18,10 @@ import com.example.bp3.service.repository.RestApiHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * @author Thom van den Hoven
+ */
+
 public class AanmakenAccount extends AppCompatActivity {
 
     RadioButton rdbStudent;
