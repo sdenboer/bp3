@@ -280,7 +280,7 @@ public class RestApiHelper {
                     }, error -> Log.e("Webservice Error", error.toString()));
 
 //        POST request voor een object
-            Tag newTag = new Tag("te");
+            Tag newTag = new Tag("java");
             RestApiHelper.prepareQuery("tag")
                     .build()
                     .post(newTag, response -> {
