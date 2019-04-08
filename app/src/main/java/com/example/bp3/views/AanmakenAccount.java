@@ -60,7 +60,7 @@ public class AanmakenAccount extends AppCompatActivity {
 
         btnAanmakenAccount.setOnClickListener((v) -> {
             if (rdbStudent.isChecked()){
-
+                /*
                 RestApiHelper opleidingJSON = RestApiHelper
                         .prepareQuery("opleiding")
                         .klasse(Student.class)
@@ -72,7 +72,7 @@ public class AanmakenAccount extends AppCompatActivity {
                             txtNaam.getText().toString(), txtTelefoon.getText().toString(), Integer.parseInt(txtLeerjaar.getText().toString()), opleiding);
                     maakStudent(student);
                 }, error -> Log.d("Error", error.toString()));
-
+                */
             } else if (rdbDocent.isChecked()){
                 /*
                 RestApiHelper opleidingJSON = RestApiHelper
