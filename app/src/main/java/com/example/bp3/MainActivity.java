@@ -30,6 +30,7 @@ import com.example.bp3.views.fragments.Opdracht.Bedrijf.OpdrachtVraagTag;
 import com.example.bp3.views.fragments.Opdracht.Docent.IDataSendDeadline;
 import com.example.bp3.views.fragments.Opdracht.Docent.OpdrachtVraagAdd;
 import com.example.bp3.views.fragments.Opdracht.Student.OpdrachtAanbodLesvak;
+import com.example.bp3.views.menus.TitlePage;
 
 import java.util.Map;
 
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         //DIT WORDT HET HOMESCREEN
-//        displaySelectedScreen(R.id.navigation_assignments);
+        displaySelectedScreen(R.id.fragment_container);
     }
 
     @Override
@@ -88,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void displaySelectedScreen(int itemId) {
         Fragment fragment = null;
         switch (itemId) {
+            case R.id.fragment_container:
+                fragment = new TitlePage();
+                break;
             case R.id.navigation_profile:
                 break;
             case R.id.navigation_work:
