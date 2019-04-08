@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dialog"
+            android:spinnerMode="dropdown"
             android:prompt="@string/event_dropdownsoort"
             />
 
