@@ -25,10 +25,4 @@ public class InschrijvingEventViewModel extends AndroidViewModel implements Seri
     public void create(Inschrijvingsnummer inschrijvingsnummer) {
         EventInschrijfRepository.getInstance().create(inschrijvingsnummer);
     }
-    public void update(Inschrijvingsnummer inschrijvingsnummer) {
-        EventInschrijfRepository.getInstance().update(inschrijvingsnummer);
-    }
-    public void delete(Inschrijvingsnummer inschrijvingsnummer) {
-        EventInschrijfRepository.getInstance().delete(inschrijvingsnummer);
-    }
 }
